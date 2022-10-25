@@ -1,0 +1,44 @@
+
+          <!-- USER TABLE  -->
+      <section class="home-section mt-5">
+        <div class="container d-flex justify-content-end">
+          <a href="" class="btn btn-danger mb-2">VIEW BLOCKED USERS</a>
+        </div>
+        <div class="container">
+          <table class="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th scope="col">S.NO</th>
+                <th scope="col">ID</th>
+                <th scope="col">USERNAME</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">BLOCK USER</th>
+                <th scope="col">UNBLOCK USER</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr>
+                <th scope="row">1</th>
+                <td>165132</td>
+                <td>ATHUL</td>
+                <td>sfssfsf@gmail.com</td>
+                <td><input type="button" name="blockUser" id="blockUser" class="btn btn-danger" value="BLOCK"></td>
+                <td><input type="button" name="unblockUser" id="unblockUser" class="btn btn-success" value="UNBLOCK"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".sidebarBtn");
+  sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right"); 
+  }else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+  }
+  </script>
+

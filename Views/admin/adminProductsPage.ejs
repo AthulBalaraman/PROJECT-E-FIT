@@ -1,0 +1,50 @@
+          <!-- USER TABLE  -->
+          <section class="home-section mt-5">
+            <div class="container d-flex justify-content-center">
+              <a href="/admin/addProduct" class="btn btn-success mb-2">ADD PRODUCT</a>
+            </div>
+            <div class="container">
+              <table class="table table-dark table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">S.NO</th>
+                    <th scope="col">PRODUCT NAME</th>
+                    <th scope="col">CATEGORY</th>
+                    <th scope="col">SELLING PRICE</th>
+                    <th scope="col">EDIT PRODUCT</th>
+                    <th scope="col">DELETE PRODUCT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(var i=0;i<ProductDetails.length;i++) { %>
+                  <tr>
+                    <th scope="row"><%= i+1 %></th>
+                    <td><%= ProductDetails[i].productName %></td>
+                    <td><%= ProductDetails[i].categoryName%></td>
+                    <td><%= ProductDetails[i].sellingPrice %></td>
+                    <td>
+                      <a href="" type="button" class="btn btn-success">EDIT</a>
+                    </td>
+                    <td>
+                      <a href="/admin/deleteProduct?id=<%= ProductDetails[i]._id %>" type="button" class="btn btn-danger">DELETE</a>
+                    </td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
+

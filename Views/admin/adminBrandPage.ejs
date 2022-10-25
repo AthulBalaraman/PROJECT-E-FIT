@@ -1,0 +1,92 @@
+
+
+
+
+<section class="home-section mt-2 ">
+  <div class="container mb-3">
+    <!-- Button trigger modal -->
+<button
+type="button"
+class="btn btn-success"
+data-bs-toggle="modal"
+data-bs-target="#exampleModal"
+>
+ADD BRAND
+</button>
+<form action="/admin/addBrand" method="POST">
+  
+<!-- Modal -->
+<div
+class="modal fade"
+id="exampleModal"
+tabindex="-1"
+aria-labelledby="exampleModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title text-warning" id="exampleModalLabel">ADD BRAND</h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <label for="newCategoryName" class="text-primary">Brand Name : </label><br>
+      <input type="text" name="newBrandName" id="newCategoryName"><br>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+      </button>
+      <button type="submit" class="btn btn-success">ADD</button>
+    </div>
+  </div>
+</div>
+</div>
+  </div>
+</form>
+  <div class="container">
+    <table class="table table-dark table-hover">
+      <thead>
+        <tr>
+          <th scope="col">SNO</th>
+          <th scope="col">BRAND NAME</th>
+          <th scope="col">EDIT BRAND</th>
+          <th scope="col">DELETE BRAND</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0;i<brands.length;i++) { %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= brands[i].newBrandName %></td>
+          <td><a href="/admin/editBrand" class="btn btn-warning">EDIT</a></td>
+          <td><a href="/admin/deleteBrand?id=<%= brands[i]._id %>" class="btn btn-danger">DELETE</a></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".sidebarBtn");
+  sidebarBtn.onclick = function () {
+    sidebar.classList.toggle("active");
+    if (sidebar.classList.contains("active")) {
+      sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+    } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+  };
+
+  var myModal = document.getElementById("myModal");
+  var myInput = document.getElementById("myInput");
+
+  myModal.addEventListener("shown.bs.modal", function () {
+    myInput.focus();
+  });
+</script>

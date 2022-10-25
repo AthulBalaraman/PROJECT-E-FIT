@@ -1,0 +1,137 @@
+<section class="home-section" style="height: 100vh">
+  <div class="container" style="background: #fff; padding: 1.5rem">
+    <form action="/admin/addProductDetails" method="POST">
+      <div class="row">
+        <div class="input-group mb-3 w-50">
+          <span
+            class="input-group-text bg-dark text-white"
+            id="inputGroup-sizing-default"
+            >PRODUCT NAME</span
+          >
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            name="productName"
+            id="productName"
+            
+          />
+        </div>
+        <div class="input-group mb-3 w-25">
+          <span
+            class="input-group-text bg-dark text-white"
+            id="inputGroup-sizing-default"
+            >ACTUAL PRICE</span
+          >
+          <input
+            type="number"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            name="actualPrice"
+            id="actualPrice"
+          />
+        </div>
+        <div class="input-group mb-3 w-25">
+          <span
+            class="input-group-text bg-dark text-white"
+            id="inputGroup-sizing-default"
+            >SELLING PRICE</span
+          >
+          <input
+            type="number"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            name="sellingPrice"
+            id="actualPrice"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 w-50">
+          <span
+            class="input-group-text bg-dark text-white"
+            id="inputGroup-sizing-default"
+            >SELECT CATEGORY</span
+          >
+          <select class="form-select" aria-label="Default select example" name="categoryName">
+            <option selected></option>
+            <% for(var i=0;i<categoriesDetails.length; i++) { %>
+            <option value="<%= categoriesDetails[i].newCategoryName %>"><%= categoriesDetails[i].newCategoryName %></option>
+            <% } %>
+          </select>
+        </div>
+        <div class="input-group mb-3 w-50">
+          <span
+            class="input-group-text bg-dark text-white"
+            id="inputGroup-sizing-default"
+            >SELECT BRAND</span
+          >
+          <select class="form-select" aria-label="Default select example" name="brandName">
+            <option selected></option>
+            <% for(var i=0; i<brandDetails.length; i++){ %>
+            <option value="<%= brandDetails[i].newBrandName %>"><%= brandDetails[i].newBrandName %></option>
+            <% } %>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 w-25">
+          <span
+            class="input-group-text bg-dark text-white"
+            id="inputGroup-sizing-default"
+            >ADD WEIGHT</span
+          >
+          <input
+            type="number"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            name="weight"
+            id="weight"
+          />
+        </div>
+        <div class="input-group mb-3 w-25">
+          <span
+            class="input-group-text bg-dark text-white"
+            id="inputGroup-sizing-default"
+            >QUANTITY</span
+          >
+          <input
+            type="number"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            name="productQuantity"
+            id="productQuantity"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 w-50">
+          <div class="input-group">
+            <span class="input-group-text bg-dark text-white"
+              >ADD PRODUCT DESCRIPTION</span
+            >
+            <textarea class="form-control" aria-label="With textarea" name="productDescription"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-group w-50">
+          <input type="file" multiple name="productImage" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+          <button class="btn btn-outline-secondary  bg-dark text-white" type="button" id="inputGroupFileAddon04">Upload</button>
+        </div>
+      </div>
+      <div class="row">
+      <div class="d-flex justify-content-center mt-5">
+        <input type="submit" value="ADD PRODUCT" class="btn btn-success m-2 ">
+        <input type="reset" value="RESET DETAILS" class="btn btn-secondary m-2 ">
+      </div>
+      </div>
+
+    </form>
+  </div>
+</section>
