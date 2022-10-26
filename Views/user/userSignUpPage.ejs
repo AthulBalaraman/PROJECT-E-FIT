@@ -1,0 +1,134 @@
+<section class="vh-100">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 text-black">
+        <div class="px-5 ms-xl-4 mt-5">
+          
+          <span class="h1 fw-bold mb-0 m-5 p-5">REGISTER IN E-FIT</span>
+        </div>
+
+        <div
+          class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5"
+        >
+          <form style="width: 23rem" onsubmit="return uservalidation()" method="POST" action="/userSignUPAction">
+            
+
+            <div class="form-outline">
+              <label class="form-label" for="form2Example18">Name</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                class="form-control form-control-lg"
+              />
+
+              <span id="usernameerror" class="text-danger"></span>
+            </div>
+            
+            <div class="form-outline">
+              <label class="form-label" for="form2Example18">Email</label>
+              <input
+                type="email"
+                name="useremail"
+                id="useremail"
+                class="form-control form-control-lg"
+              />
+
+              <span id="useremailerror" class="text-danger"></span>
+            </div>
+
+            <div class="form-outline ">
+              <label class="form-label" for="form2Example28">Password</label>
+              <input
+                type="password"
+                name="userpassword"
+                id="userpassword"
+                class="form-control form-control-lg"
+              />
+              <span id="userpassworderror" class="text-danger"></span>
+            </div>
+            
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example18">Confirm Password</label>
+              <input
+                type="text"
+                name="userconfirmpassword"
+                id="userconfirmpassword"
+                class="form-control form-control-lg"
+              />
+
+              <span id="userconfirmpassworderror" class="text-danger"></span>
+            </div>
+
+            <div class="pt-1 mb-4">
+              <button class="btn btn-info btn-lg btn-block" type="submit">
+                signUp
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img
+          src="https://i.pinimg.com/736x/1c/9e/29/1c9e2907f354c4ec2ea575e21cfb2343.jpg"
+          alt="Login image"
+          class="w-100 vh-100"
+          style="object-fit: cover; object-position: left"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function uservalidation() {
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("userpassword").value.trim();
+    let email = document.getElementById("useremail").value.trim()
+    let confirm_password = document.getElementById("userconfirmpassword").value.trim()
+ 
+    var flag = 0;
+    if(email == ""){
+      document.getElementById("useremailerror").innerHTML =
+        "Email Require";
+        flag=1
+    }
+    else{
+      document.getElementById("useremailerror").innerHTML = ""
+    }
+    if (username.length<= 3) {
+      document.getElementById("usernameerror").innerHTML =
+        "invalid name";
+       flag=1
+    }
+    else
+    {
+      document.getElementById("usernameerror").innerHTML = "";
+    }
+    if (password == "") {
+      document.getElementById("userpassworderror").innerHTML = "invalid password";
+        flag = 1
+    }
+    else
+    {
+      document.getElementById("userpassworderror").innerHTML = "";
+    }
+    if(confirm_password != password)
+    {
+      document.getElementById("userconfirmpassworderror").innerHTML = "type correct password"
+      flag = 1
+    }
+    else if(confirm_password == "")
+    {
+      document.getElementById("userconfirmpassworderror").innerHTML = "Confirm Password Required"
+      flag = 1
+    }else
+    {
+      document.getElementById("userconfirmpassworderror").innerHTML = ""
+    }
+    if(flag == 1)
+    {
+      return false
+    }
+  }
+</script>

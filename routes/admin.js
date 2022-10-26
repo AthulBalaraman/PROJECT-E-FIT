@@ -6,13 +6,21 @@ const adminBrand = require('../Controllers/adminBrandController')
 const adminProduct = require('../Controllers/adminProductController')
 const multer = require('multer')
 
-// product image adding code for storage setting
+//product image adding code for storage setting
+// const storage = multer.diskStorage({
+//   destination:'./public/image', 
+//   filename:(req,file,cb)=>{
+//     cb(null,Date.now()+file.originalname) // file name setting
+//   }
+// })
+
 const storage = multer.diskStorage({
-  destination:'./public/img', 
+  destination: './public/images',
   filename:(req,file,cb)=>{
-    cb(null,Date.now()+file.originalname) // file name setting
-  }
+cb(null,Date.now()+file.originalname)
+  }  
 })
+
 
 // product image uploading code
 const upload = multer({

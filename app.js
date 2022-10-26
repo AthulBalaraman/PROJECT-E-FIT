@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 5000
 const adminRouter = require('./routes/admin')
+const userRouter = require('./routes/user')
 
 const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
@@ -16,7 +17,6 @@ app.set('view engine','ejs')
 app.set('layout','./layout/layout')
 
 
-
 db.connect((err)=>{
   if(err){
     console.log("Database Fail");
@@ -26,9 +26,8 @@ db.connect((err)=>{
   }
 })
 
-
+app.use('/',userRouter)
 app.use('/admin',adminRouter)
-
 
 app.listen(port,()=>{
   console.log('server started')

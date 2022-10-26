@@ -21,7 +21,7 @@ const addProductPage = (req,res)=>{
 
 
 const addProductDetails = (req,res)=>{
-  
+  console.log(req.body,req.files)
   adminProduct.insertProduct({
     Picture: req.files, // edit here accordingly
     productName: req.body.productName,
@@ -31,7 +31,8 @@ const addProductDetails = (req,res)=>{
     brandName:req.body.brandName,
     weight:req.body.weight,
     productQuantity:req.body.productQuantity,
-    productDescription:req.body.productDescription
+    productDescription:req.body.productDescription,
+    productImage:req.files.productImage
 
   }).then((response)=>{
     res.redirect('/admin/adminProductspage')
