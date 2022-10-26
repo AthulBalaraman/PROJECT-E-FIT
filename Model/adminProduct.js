@@ -4,9 +4,9 @@ const { ObjectId } = require('mongodb')
 
 module.exports = {
 
-  insertProduct:(ImageId,newProduct)=>{
+  insertProduct:(imageID,newProduct)=>{
     return new Promise(async(resolve,reject)=>{
-      db.get().collection(collection.PRODUCTS).insertOne(ImageId,newProduct).then((data)=>{
+      db.get().collection(collection.PRODUCTS).insertOne(imageID,newProduct).then((data)=>{
         resolve.apply(data)
       })
     })

@@ -6,43 +6,30 @@ const adminBrand = require('../Controllers/adminBrandController')
 const adminProduct = require('../Controllers/adminProductController')
 const multer = require('multer')
 
-//product image adding code for storage setting
-// const storage = multer.diskStorage({
-//   destination:'./public/image', 
-//   filename:(req,file,cb)=>{
-//     cb(null,Date.now()+file.originalname) // file name setting
-//   }
-// })
 
 const storage = multer.diskStorage({
   destination: './public/images',
   filename:(req,file,cb)=>{
-cb(null,Date.now()+file.originalname)
-  }  
+    cb(null,Date.now()+file.originalname)
+  }
 })
 
-
-// product image uploading code
 const upload = multer({
   storage: storage,
   fileFilter:(req,file,cb)=>{
     if(
       file.mimetype == 'image/jpeg'|| 
       file.mimetype == 'image/jpg'||
-      file.mimetype == 'image/png' ||
-      file.mimetype == 'image/gif' ||
+      file.mimetype == 'image/png'||
       file.mimetype == 'image/webp'
     ){
       cb(null,true)
-    }
-    else
-    {
-      cb(null,false);
-      cb(new Error('Only jpeg, jpg, png and gif Image allowed'))
+    }else{
+      cb(null,false)
+      cb(new Error('only jpeg,jpg files'))
     }
   }
 })
-
 
 router.get('/',admin.adminLoginPage)
 router.post('/adminloginaction',admin.adminLoginAction)
@@ -67,6 +54,7 @@ router.get('/deleteBrand',adminBrand.deleteBrand)
 //--------------------------PRODUCT ROUTES--------------------------------------------
 router.get('/adminProductspage',adminProduct.adminProductsPage)
 router.get('/addProduct',adminProduct.addProductPage)
+// router.post('/addProductDetails',adminProduct.addProductDetails)
 router.post('/addProductDetails',upload.array('productImage',5),adminProduct.addProductDetails)
 router.get('/deleteProduct',adminProduct.deleteProduct)
 

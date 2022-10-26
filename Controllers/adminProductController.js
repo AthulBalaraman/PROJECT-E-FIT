@@ -20,24 +20,37 @@ const addProductPage = (req,res)=>{
 }
 
 
-const addProductDetails = (req,res)=>{
-  console.log(req.body,req.files)
-  adminProduct.insertProduct({
-    Picture: req.files, // edit here accordingly
-    productName: req.body.productName,
-    actualPrice: req.body.actualPrice,
-    sellingPrice:req.body.sellingPrice,
-    categoryName:req.body.categoryName,
-    brandName:req.body.brandName,
-    weight:req.body.weight,
-    productQuantity:req.body.productQuantity,
-    productDescription:req.body.productDescription,
-    productImage:req.files.productImage
+// const addProductDetails = (req,res)=>{
+//   console.log(req.body,req.files)
+//   adminProduct.insertProduct({
+//     Picture: req.files, // edit here accordingly
+//     productName: req.body.productName,
+//     actualPrice: req.body.actualPrice,
+//     sellingPrice:req.body.sellingPrice,
+//     categoryName:req.body.categoryName,
+//     brandName:req.body.brandName,
+//     weight:req.body.weight,
+//     productQuantity:req.body.productQuantity,
+//     productDescription:req.body.productDescription,
+//     productImage:req.files.productImage
 
-  }).then((response)=>{
+//   }).then((response)=>{
+//     res.redirect('/admin/adminProductspage')
+//   })
+// }
+
+const addProductDetails = (req,res)=>{
+  console.log(req.body)
+  console.log(req.file)
+  adminProduct.insertProduct({
+    picture: req.files,
+    newProduct: req.body}).then((response)=>{
     res.redirect('/admin/adminProductspage')
-  })
-}
+    })
+  }
+
+
+
 
 const deleteProduct = (req,res)=>{
   let productId = req.query.id
@@ -51,6 +64,6 @@ const deleteProduct = (req,res)=>{
 module.exports = {
   adminProductsPage,
   addProductPage,
-  addProductDetails,
-  deleteProduct
+  deleteProduct,
+  addProductDetails
 }
