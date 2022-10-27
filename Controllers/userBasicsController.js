@@ -13,14 +13,21 @@ const showSignUpPage = (req,res)=>{
 }
 
 const userSignUpaction = (req,res)=>{
-userCredentials.insertUserCredentials(req.body).then((response)=>{
+userCredentials.insertUserCredentials(req.body).then(()=>{
   res.redirect('/showUserLoginPage')
 })
 }
 
-const addNewCategory = (req,res)=>{
-  adminCategory.insertcategory(req.body).then((response)=>{
-    res.redirect('/admin/adminCategoryPage')
+const userLoginAction = (req,res)=>{
+  userCredentials.checkUserLogin(req.body).then((response)=>{
+    if(response.status)
+    {
+      res.render('user/userHomePage',{admin:false})
+    }
+    else
+    {
+      res.render('user/userLoginPage',{admin:false})
+    }
   })
 }
 
@@ -32,5 +39,6 @@ module.exports = {
   showLandingPage,
   showLoginPage,
   showSignUpPage,
-  userSignUpaction
+  userSignUpaction,
+  userLoginAction
 }

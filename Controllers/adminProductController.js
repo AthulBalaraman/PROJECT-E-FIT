@@ -23,7 +23,7 @@ const addProductDetails = (req,res)=>{
   console.log(req.body)
   console.log(req.file)
   adminProduct.insertProduct({
-    picture: req.files,
+    picture: req.file.filename,
     newProduct: req.body}).then((response)=>{
     res.redirect('/admin/adminProductspage')
     })
