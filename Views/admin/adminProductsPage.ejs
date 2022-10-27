@@ -10,18 +10,20 @@
                     <th scope="col">S.NO</th>
                     <th scope="col">PRODUCT NAME</th>
                     <th scope="col">CATEGORY</th>
+                    <th scope="col">IMAGE</th>
                     <th scope="col">SELLING PRICE</th>
                     <th scope="col">EDIT PRODUCT</th>
                     <th scope="col">DELETE PRODUCT</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% for(var i=0;i<ProductDetails.length;i++) { %>
+                    <% for(var i=0;i<ProductDetails.length;i++){ %>
                   <tr>
-                    <th scope="row"><%= i+1 %></th>
-                    <td><%= ProductDetails[i].productName %></td>
-                    <td><%= ProductDetails[i].categoryName%></td>
-                    <td><%= ProductDetails[i].sellingPrice %></td>
+                    <td><%= i+1 %></td>
+                    <td><%= ProductDetails[i].newProduct.productName %></td>
+                    <td><%= ProductDetails[i].newProduct.categoryName %></td>
+                    <td><img src="/images/<%=ProductDetails[i].picture %>" alt="product Image" style="width:4em ; height:4em"></td>
+                    <td><%= ProductDetails[i].newProduct.sellingPrice %></td>
                     <td>
                       <a href="/admin/showEditProductPage?id=<%= ProductDetails[i]._id %>" type="button" class="btn btn-success">EDIT</a>
                     </td>

@@ -9,12 +9,11 @@ const adminProductsPage = (req,res)=>{
     }
    
 
-
 const addProductPage = (req,res)=>{
   categories.displayCategory().then((categoriesDetails)=>{
     brand.displayBrand().then((brandDetails)=>{
       res.render('admin/adminAddProductPage',{admin:true,title:"ADD PRODUCT PAGE",categoriesDetails,brandDetails})
-    })
+    })  
   })
  
 }
@@ -40,32 +39,19 @@ const deleteProduct = (req,res)=>{
 }
 
 
-const updateProductDetails = (req,res)=>{
+const updateProductDetails =async(req,res)=>{
+  let productid = req.query.id
+  let product = await adminProduct.getProductDetails(productid)
+
   categories.displayCategory().then((categoriesDetails)=>{
   brand.displayBrand().then((brandDetails)=>{
-    let productid = req.query.id
-    console.log(productid)
-    let product = adminProduct.getProductDetails(productid)
     res.render('admin/adminUpdateProductPage',{admin:true,title:"EDIT PRODUCT PAGE",categoriesDetails,brandDetails,product})
   })
   })
   
 }
 
-// router.get('/updateUser',async(req,res)=>{
 
-//   let userid = req.query.id
-//   console.log(userid);
-//   let user = await adminhelper.getUserDetails(userid)
-  
-//   if(req.session.loggedin){
-//     res.render('pages/updateUser',{admin:true,user})
-//   }
-//   else{
-//     res.render('pages/adminLogin',{admin:true,user:false})
-//   }
- 
-// })
 
 module.exports = {
   adminProductsPage,

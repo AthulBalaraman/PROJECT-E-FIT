@@ -15,6 +15,7 @@ module.exports = {
   displayProducts:()=>{
     return new Promise(async(resolve,reject)=>{
       let ProductDetails = await db.get().collection(collection.PRODUCTS).find().toArray()
+      console.log(ProductDetails)
       resolve(ProductDetails)
     })
   },
