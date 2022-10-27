@@ -54,9 +54,8 @@ router.get('/deleteBrand',adminBrand.deleteBrand)
 //--------------------------PRODUCT ROUTES--------------------------------------------
 router.get('/adminProductspage',adminProduct.adminProductsPage)
 router.get('/addProduct',adminProduct.addProductPage)
-// router.post('/addProductDetails',adminProduct.addProductDetails)
 router.post('/addProductDetails',upload.single('productImage'),adminProduct.addProductDetails)
 router.get('/deleteProduct',adminProduct.deleteProduct)
-
+router.get('/showEditProductPage',adminProduct.updateProductDetails)
 
 module.exports = router    
