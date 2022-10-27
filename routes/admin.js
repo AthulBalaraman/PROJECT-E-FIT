@@ -59,4 +59,4 @@ router.post('/addProductDetails',upload.array('productImage',5),adminProduct.add
 router.get('/deleteProduct',adminProduct.deleteProduct)
 
 
-module.exports = router
+module.exports = router    

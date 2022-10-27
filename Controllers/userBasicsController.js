@@ -1,4 +1,4 @@
-
+const userCredentials = require('../Model/userBasics')
 
 const showLandingPage = (req,res)=>{
   res.render('user/userLandingPage',{admin:false})
@@ -13,8 +13,19 @@ const showSignUpPage = (req,res)=>{
 }
 
 const userSignUpaction = (req,res)=>{
-res.redirect('/showUserLoginPage')
+userCredentials.insertUserCredentials(req.body).then((response)=>{
+  res.redirect('/showUserLoginPage')
+})
 }
+
+const addNewCategory = (req,res)=>{
+  adminCategory.insertcategory(req.body).then((response)=>{
+    res.redirect('/admin/adminCategoryPage')
+  })
+}
+
+
+
 
 
 module.exports = {
