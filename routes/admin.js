@@ -57,5 +57,6 @@ router.get('/addProduct',adminProduct.addProductPage)
 router.post('/addProductDetails',upload.single('productImage'),adminProduct.addProductDetails)
 router.get('/deleteProduct',adminProduct.deleteProduct)
 router.get('/showEditProductPage',adminProduct.updateProductDetails)
+router.post('/updateProductDetails',upload.single('productImage'),adminProduct.updateProductDetailsAction)
 
 module.exports = router    
