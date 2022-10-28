@@ -34,10 +34,7 @@ const upload = multer({
 
 router.get('/',admin.adminLoginPage)
 router.post('/adminloginaction',admin.adminLoginAction)
-
 router.get('/adminHomePage',admin.adminHomePage)
-
-
 router.get('/adminLogout',admin.adminLogout)
 
 //----------------------CATEGORY ROUTES---------------------------------------------
