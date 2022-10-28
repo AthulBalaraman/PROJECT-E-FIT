@@ -4,6 +4,7 @@ const admin = require('../Controllers/adminLoginController')
 const adminCategory = require('../Controllers/adminCategoryController')
 const adminBrand = require('../Controllers/adminBrandController')
 const adminProduct = require('../Controllers/adminProductController')
+const adminUser = require('../Controllers/adminUserController')
 const multer = require('multer')
 
 
@@ -33,7 +34,7 @@ const upload = multer({
 
 router.get('/',admin.adminLoginPage)
 router.post('/adminloginaction',admin.adminLoginAction)
-router.get('/adminUserPage',admin.adminUserPage)
+
 router.get('/adminHomePage',admin.adminHomePage)
 
 
@@ -58,5 +59,11 @@ router.post('/addProductDetails',upload.single('productImage'),adminProduct.addP
 router.get('/deleteProduct',adminProduct.deleteProduct)
 router.get('/showEditProductPage',adminProduct.updateProductDetails)
 router.post('/updateProductDetails',upload.single('productImage'),adminProduct.updateProductDetailsAction)
+
+
+//-------------------------------USER ROUTES-------------------------------------------------
+
+router.get('/adminUserPage',adminUser.adminUserPage)
+
 
 module.exports = router    

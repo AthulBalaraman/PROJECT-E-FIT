@@ -9,8 +9,7 @@
             <thead>
               <tr>
                 <th scope="col">S.NO</th>
-                <th scope="col">ID</th>
-                <th scope="col">USERNAME</th>
+                <th scope="col">NAME</th>
                 <th scope="col">EMAIL</th>
                 <th scope="col">BLOCK USER</th>
                 <th scope="col">UNBLOCK USER</th>
@@ -19,13 +18,14 @@
             <tbody>
 
               <tr>
-                <th scope="row">1</th>
-                <td>165132</td>
-                <td>ATHUL</td>
-                <td>sfssfsf@gmail.com</td>
+                <% for(var i=0;i<User_Details.length;i++) { %>
+                <th scope="row"><%= i+1 %></th>
+                <td><%= User_Details[i].username %></td>
+                <td><%= User_Details[i].useremail %>></td>
                 <td><input type="button" name="blockUser" id="blockUser" class="btn btn-danger" value="BLOCK"></td>
                 <td><input type="button" name="unblockUser" id="unblockUser" class="btn btn-success" value="UNBLOCK"></td>
               </tr>
+              <% } %>
             </tbody>
           </table>
         </div>

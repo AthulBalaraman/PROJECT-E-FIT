@@ -18,9 +18,7 @@ const adminLoginAction = (req,res)=>{
   }) 
 }
 
-const adminUserPage = (req,res)=>{
-  res.render('admin/adminUserPage',{admin:true,title:"USER CONTROL PAGE"})
-}
+
 
 const adminHomePage = (req,res)=>{
   res.render('admin/adminHome',{admin:true,title:"ADMIN HOME PAGE"})
@@ -36,7 +34,6 @@ const adminLogout = (req,res)=>{
 module.exports = {
   adminLoginPage,
   adminLoginAction,
-  adminUserPage,
   adminHomePage,
   adminLogout
   
