@@ -7,5 +7,6 @@ router.get('/showUserLoginPage',userBasics.showLoginPage)
 router.get('/showUserSignUpPage',userBasics.showSignUpPage)
 router.post('/userSignUpAction',userBasics.userSignUpaction)
 router.post('/userLoginAction',userBasics.userLoginAction)
+router.get('/userLogout',userBasics.userLogout)
 
 module.exports = router

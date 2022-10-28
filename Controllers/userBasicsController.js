@@ -32,7 +32,9 @@ const userLoginAction = (req,res)=>{
   })
 }
 
-
+const userLogout = (req,res)=>{
+res.redirect('/')
+}
 
 
 
@@ -41,5 +43,6 @@ module.exports = {
   showLoginPage,
   showSignUpPage,
   userSignUpaction,
-  userLoginAction
+  userLoginAction,
+  userLogout
 }
