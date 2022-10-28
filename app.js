@@ -21,7 +21,7 @@ app.use(cookieParser())
 app.use(session({
   secret:"1234",
   saveUninitialized:true,
-  cookie:{maxAge:600000},
+  cookie:{maxAge:300000},
   resave:false
 
 }))

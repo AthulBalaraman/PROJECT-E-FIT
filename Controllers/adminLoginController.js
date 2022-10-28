@@ -28,10 +28,16 @@ const adminLoginAction = (req,res)=>{
   }) 
 }
 
-
-
 const adminHomePage = (req,res)=>{
-  res.render('admin/adminHome',{admin:true,title:"ADMIN HOME PAGE"})
+  if(req.seesion.admin)
+  {
+    res.render('admin/adminHome',{admin:true,title:"ADMIN HOME PAGE"})
+  }
+  else
+  {
+    res.render('admin/adminLogin',{admin:false})
+  }
+
 }
 
 

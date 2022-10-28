@@ -1,5 +1,6 @@
 const userCredentials = require('../Model/userBasics')
 
+
 const showLandingPage = (req,res)=>{
   res.render('user/userLandingPage',{admin:false})
 }
