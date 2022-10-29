@@ -74,18 +74,3 @@ module.exports = {
   },
 };
 
-// updateUser:(userId,userDetails)=>{
-//   return new Promise((resolve,reject)=>{
-//     db.get().collection('userdatacollection').updateOne({_id:ObjectID(userId)},{
-//       $set:{
-//         userFname: userDetails.userFname,
-//         userLname: userDetails.userLname,
-//         userEmail: userDetails.userEmail,
-//         userPassword: userDetails.userPassword,
-//         userConfirmPassword: userDetails.userConfirmPassword
-//       }
-//     }).then((response)=>{
-//       resolve()
-//     })
-//   })
-// }
