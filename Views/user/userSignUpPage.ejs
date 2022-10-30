@@ -1,6 +1,7 @@
 <section class="vh-100">
   <div class="container-fluid">
     <div class="row">
+ 
       <div class="col-sm-6 text-black">
         <div class="px-5 ms-xl-4 mt-5">
           
@@ -10,62 +11,66 @@
         <div
           class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5"
         >
-          <form style="width: 23rem" onsubmit="return uservalidation()" method="POST" action="/userSignUPAction">
-            
+          <div class="m-5 p-5">
+            <form style="width: 23rem" onsubmit="return uservalidation()" method="POST" action="/userSignUPAction">
+              <div>
+                <input type="text" name="verified" id="verified" value="0" style="display:none">
+              </div>
 
-            <div class="form-outline">
-              <label class="form-label" for="form2Example18">Name</label>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                class="form-control form-control-lg"
-              />
-
-              <span id="usernameerror" class="text-danger"></span>
-            </div>
-            
-            <div class="form-outline">
-              <label class="form-label" for="form2Example18">Email</label>
-              <input
-                type="email"
-                name="useremail"
-                id="useremail"
-                class="form-control form-control-lg"
-              />
-
-              <span id="useremailerror" class="text-danger"></span>
-            </div>
-
-            <div class="form-outline ">
-              <label class="form-label" for="form2Example28">Password</label>
-              <input
-                type="password"
-                name="userpassword"
-                id="userpassword"
-                class="form-control form-control-lg"
-              />
-              <span id="userpassworderror" class="text-danger"></span>
-            </div>
-            
-            <div class="form-outline mb-4">
-              <label class="form-label" for="form2Example18">Confirm Password</label>
-              <input
-                type="text"
-                name="userconfirmpassword"
-                id="userconfirmpassword"
-                class="form-control form-control-lg"
-              />
-
-              <span id="userconfirmpassworderror" class="text-danger"></span>
-            </div>
-
-            <div class="pt-1 mb-4">
-              <button class="btn btn-info btn-lg btn-block" type="submit">
-                signUp
-              </button>
-            </div>
-          </form>
+              <div class="form-outline">
+                <label class="form-label" for="form2Example18">Name</label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  class="form-control form-control-lg"
+                />
+  
+                <span id="usernameerror" class="text-danger"></span>
+              </div>
+              
+              <div class="form-outline">
+                <label class="form-label" for="form2Example18">Email</label>
+                <input
+                  type="email"
+                  name="useremail"
+                  id="useremail"
+                  class="form-control form-control-lg"
+                />
+  
+                <span id="useremailerror" class="text-danger"></span>
+              </div>
+  
+              <div class="form-outline ">
+                <label class="form-label" for="form2Example28">Password</label>
+                <input
+                  type="password"
+                  name="userpassword"
+                  id="userpassword"
+                  class="form-control form-control-lg"
+                />
+                <span id="userpassworderror" class="text-danger"></span>
+              </div>
+              
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example18">Confirm Password</label>
+                <input
+                  type="text"
+                  name="userconfirmpassword"
+                  id="userconfirmpassword"
+                  class="form-control form-control-lg"
+                />
+  
+                <span id="userconfirmpassworderror" class="text-danger"></span>
+              </div>
+  
+              <div class="pt-1 mb-4">
+                <button class="btn btn-info btn-lg btn-block" type="submit">
+                  signUp
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <div class="col-sm-6 px-0 d-none d-sm-block">
