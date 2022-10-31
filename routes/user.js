@@ -9,5 +9,5 @@ router.post('/userSignUpAction',userBasics.userSignUpaction)
 router.post('/userLoginAction',userBasics.userLoginAction)
 router.get('/userLogout',userBasics.userLogout)
 
-router.put('/checkOtp',userBasics.checkOtp)
+router.post('/checkOtp',userBasics.checkOtp)
 module.exports = router

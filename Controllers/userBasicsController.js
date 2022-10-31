@@ -1,5 +1,7 @@
 const userCredentials = require('../Model/userBasics')
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+const collection = require('../config/collection');
+const { response } = require('express');
 
 
 let mailTransporter = nodemailer.createTransport({
@@ -8,7 +10,7 @@ let mailTransporter = nodemailer.createTransport({
       user: 'athul2522001@gmail.com',
       pass: 'myhmxppxxvoixqtl'
   }
-});
+})
 
 const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`;
 
@@ -26,8 +28,9 @@ const showSignUpPage = (req,res)=>{
 }
 
 const userSignUpaction = (req,res)=>{
-
-  const useremail = req.body.useremail
+  let verified = 0
+ 
+  const {username,useremail,userpassword}= req.body
   let mailDetails = {
     from: 'athul2522001@gmail.com',
     to: useremail,
@@ -41,9 +44,8 @@ const userSignUpaction = (req,res)=>{
         console.log('Email sent successfully');
     }
 })
-
-userCredentials.insertUserCredentials(req.body).then(()=>{
-  console.log(req.body)
+userCredentials.insertUserCredentials(verified,username,useremail,userpassword).then((response)=>{
+  userID = response.insertedId
   res.render('user/otpVerificationPage',{admin:false})
 })
 }
@@ -67,10 +69,22 @@ const checkOtp = (req,res)=>{
   console.log(OTP)
   if(OTP == req.body.otpSend)
   {
-  console.log('success')
+    // let verified = 1
+    userCredentials.updateverified(userID).then((response)=>{
+      console.log('success')
+ 
+      res.render('user/userHomePage',{admin:false}) 
+    })
+  
+  }
+  else{
+    console.log('not successsssss')
   }
   }
 
+
+
+  
 const userLogout = (req,res)=>{
 res.redirect('/')
 }
