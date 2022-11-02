@@ -31,6 +31,7 @@ const addBrand = (req,res)=>{
 
 
 
+
 const deleteBrand = (req,res)=>{
   if(req.session.admin)
   {

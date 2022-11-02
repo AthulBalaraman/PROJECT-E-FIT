@@ -3,6 +3,7 @@ module.exports = {
   CATEGORIES:'categoriesCollection',
   BRANDS:'brandsCollection',
   PRODUCTS:'productDetailsCollection',
-  USER_CREDENTIALS:'userCredentials'
+  USER_CREDENTIALS:'userCredentials',
+  BANNER:'bannercollection'
 }
 

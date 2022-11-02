@@ -25,24 +25,22 @@ module.exports = {
         .findOne({ useremail: userCheck.useremail });
 
       if (user) {
-        if(user.verified==1)
-        {
-          bcrypt.compare(userCheck.password, user.userpassword).then((status) => {
-            if (status) {
-              response.status = true;
-              resolve(response);
-            } else {
-              resolve({ status: false });
-            }
-          });
+        if (user.verified == 1) {
+          bcrypt
+            .compare(userCheck.password, user.userpassword)
+            .then((status) => {
+              if (status) {
+                response.status = true;
+                resolve(response);
+              } else {
+                resolve({ status: false });
+              }
+            });
+        } else {
+          resolve({ status: false });
         }
-        else
-        {
-          resolve({status:false})
-        }
-
-      } 
-      else {
+      }
+       else {
         resolve({ status: false });
       }
     });
@@ -50,13 +48,19 @@ module.exports = {
 
   updateverified: (userID) => {
     return new Promise((resolve, reject) => {
-      db.get().collection(collection.USER_CREDENTIALS).updateOne({_id:userID},{
-        $set:{
-          verified:1
-        }
-      }).then((response)=>{
-        resolve(response)
-      })
+      db.get()
+        .collection(collection.USER_CREDENTIALS)
+        .updateOne(
+          { _id: userID },
+          {
+            $set: {
+              verified: 1,
+            },
+          }
+        )
+        .then((response) => {
+          resolve(response);
+        });
     });
   },
 };

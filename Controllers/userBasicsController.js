@@ -2,6 +2,8 @@ const userCredentials = require('../Model/userBasics')
 const nodemailer = require('nodemailer');
 const collection = require('../config/collection');
 const { response } = require('express');
+const categoryDisplay  = require('../Model/adminCategory')
+const userFrontDisplay = require('../Model/userFrontDIsplay')
 
 
 let mailTransporter = nodemailer.createTransport({
@@ -12,11 +14,20 @@ let mailTransporter = nodemailer.createTransport({
   }
 })
 
-const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`;
-
+const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`; 
 
 const showLandingPage = (req,res)=>{
-  res.render('user/userLandingPage',{admin:false})
+  userFrontDisplay.displayProducts().then((productDetails)=>{
+    categoryDisplay.displayCategory().then((category)=>{
+      res.render("user/userLandingPage", {
+        admin:false,
+        productDetails,
+        category
+      })
+    })
+
+  })
+
 }
 
 const showLoginPage = (req,res)=>{
@@ -98,5 +109,5 @@ module.exports = {
   userSignUpaction,
   userLoginAction,
   userLogout,
-  checkOtp
+  checkOtp,
 }

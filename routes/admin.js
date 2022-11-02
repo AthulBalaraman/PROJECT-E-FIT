@@ -64,4 +64,9 @@ router.post('/updateProductDetails',upload.single('productImage'),adminProduct.u
 router.get('/adminUserPage',adminUser.adminUserPage)
 
 
+//---------------------------------BANNER ROUTES-----------------------------------------
+
+router.get('/adminBannerPage')
+
+
 module.exports = router    

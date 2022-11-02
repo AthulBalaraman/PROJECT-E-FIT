@@ -44,6 +44,8 @@ const addProductDetails = (req, res) => {
       weight,
       productQuantity,
       productDescription,
+      addToTrending,
+      addToNewlyArrived
     } = req.body;
     adminProduct
       .insertProduct({
@@ -56,6 +58,8 @@ const addProductDetails = (req, res) => {
         weight,
         productQuantity,
         productDescription,
+        addToNewlyArrived,
+        addToTrending
       })
       .then((response) => {
         res.redirect("/admin/adminProductspage");
