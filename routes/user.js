@@ -3,6 +3,7 @@ const router = express.Router()
 const userBasics = require('../Controllers/userBasicsController')
 const userPoductDetails = require('../Controllers/userProductDetails')
 const cartController = require('../Controllers/userCartController')
+const userShop = require('../Controllers/userShopController')
 
 
 router.get('/',userBasics.showLandingPage)
@@ -19,6 +20,10 @@ router.post('/checkOtp',userBasics.checkOtp)
 
 
 router.get('/viewProductDetails',userPoductDetails.showProductDetails)
+router.get('/viewCategory',userShop.viewShop)
+
+
+
 
 router.get('/addToCart',cartController.addToCart)
 
