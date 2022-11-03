@@ -5,6 +5,7 @@ const adminCategory = require('../Controllers/adminCategoryController')
 const adminBrand = require('../Controllers/adminBrandController')
 const adminProduct = require('../Controllers/adminProductController')
 const adminUser = require('../Controllers/adminUserController')
+const adminBanner = require('../Controllers/adminBannerController')
 const multer = require('multer')
 
 
@@ -66,7 +67,7 @@ router.get('/adminUserPage',adminUser.adminUserPage)
 
 //---------------------------------BANNER ROUTES-----------------------------------------
 
-router.get('/adminBannerPage')
-
-
+router.get('/adminBannerPage',adminBanner.showBannerPage)
+router.post('/addNewBanner',upload.single('bannerImage'),adminBanner.addBanner)
+router.delete('/deleteBanner',adminBanner.deleteBanner)
 module.exports = router    

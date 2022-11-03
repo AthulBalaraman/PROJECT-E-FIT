@@ -4,6 +4,7 @@ const collection = require('../config/collection');
 const { response } = require('express');
 const categoryDisplay  = require('../Model/adminCategory')
 const userFrontDisplay = require('../Model/userFrontDIsplay')
+const bannerDisplay = require('../Model/adminBanner')
 
 
 let mailTransporter = nodemailer.createTransport({
@@ -19,11 +20,15 @@ const OTP = `${Math.floor(1000+ Math.random() * 9000 )}`;
 const showLandingPage = (req,res)=>{
   userFrontDisplay.displayProducts().then((productDetails)=>{
     categoryDisplay.displayCategory().then((category)=>{
-      res.render("user/userLandingPage", {
-        admin:false,
-        productDetails,
-        category
+      bannerDisplay.showBanner().then((banner)=>{
+        res.render("user/userLandingPage", {
+          admin:false,
+          productDetails,
+          category,
+          banner
+        })
       })
+
     })
 
   })
@@ -65,7 +70,21 @@ const userLoginAction = (req,res)=>{
   userCredentials.checkUserLogin(req.body).then((response)=>{
     if(response.status)
     {
-      res.render('user/userHomePage',{admin:false})
+      userFrontDisplay.displayProducts().then((productDetails)=>{
+        categoryDisplay.displayCategory().then((category)=>{
+          bannerDisplay.showBanner().then((banner)=>{
+            res.render("user/userHomePage", {
+              admin:false,
+              productDetails,
+              category,
+              banner
+            })
+          })
+    
+        })
+    
+      })
+
     }
     else
     {
@@ -83,8 +102,20 @@ const checkOtp = (req,res)=>{
     // let verified = 1
     userCredentials.updateverified(userID).then((response)=>{
       console.log('success')
- 
-      res.render('user/userHomePage',{admin:false}) 
+      userFrontDisplay.displayProducts().then((productDetails)=>{
+        categoryDisplay.displayCategory().then((category)=>{
+          bannerDisplay.showBanner().then((banner)=>{
+            res.render("user/userHomePage", {
+              admin:false,
+              productDetails,
+              category,
+              banner
+            })
+          })
+    
+        })
+    
+      })
     })
   
   }

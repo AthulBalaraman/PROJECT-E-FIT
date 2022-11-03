@@ -9574,6 +9574,15 @@ a.text-dark:hover, a.text-dark:focus {
   animation: action 1s infinite alternate;
 }
 
+.productimage{
+  width: 100%;
+  object-fit: contain;
+}
+.cat-img{
+  height: 300px;
+  
+}
+
 @keyframes action {
   0% {
     transform: translateY(0);
