@@ -39,8 +39,7 @@ module.exports = {
         } else {
           resolve({ status: false });
         }
-      }
-       else {
+      } else {
         resolve({ status: false });
       }
     });

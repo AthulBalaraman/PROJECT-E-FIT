@@ -45,7 +45,7 @@ const addProductDetails = (req, res) => {
       productQuantity,
       productDescription,
       addToTrending,
-      addToNewlyArrived
+      addToNewlyArrived,
     } = req.body;
     adminProduct
       .insertProduct({
@@ -59,7 +59,7 @@ const addProductDetails = (req, res) => {
         productQuantity,
         productDescription,
         addToNewlyArrived,
-        addToTrending
+        addToTrending,
       })
       .then((response) => {
         res.redirect("/admin/adminProductspage");
@@ -67,7 +67,7 @@ const addProductDetails = (req, res) => {
   } else {
     res.render("admin/adminLogin", { admin: false });
   }
-}
+};
 
 const deleteProduct = (req, res) => {
   if (req.session.admin) {
@@ -78,7 +78,7 @@ const deleteProduct = (req, res) => {
   } else {
     res.render("admin/adminLogin", { admin: false });
   }
-}
+};
 
 const updateProductDetails = async (req, res) => {
   if (req.session.admin) {
@@ -92,13 +92,13 @@ const updateProductDetails = async (req, res) => {
           categoriesDetails,
           brandDetails,
           product,
-        })
-      })
-    })
+        });
+      });
+    });
   } else {
     res.render("admin/adminLogin", { admin: false });
   }
-}
+};
 
 const updateProductDetailsAction = (req, res) => {
   if (req.session.admin) {
@@ -113,13 +113,13 @@ const updateProductDetailsAction = (req, res) => {
             admin: true,
             title: "PRODUCT CONTROL PAGE",
             ProductDetails,
-          })
-        })
-      })
+          });
+        });
+      });
   } else {
     res.render("admin/adminLogin", { admin: false });
   }
-}
+};
 
 module.exports = {
   adminProductsPage,
@@ -128,4 +128,4 @@ module.exports = {
   addProductDetails,
   updateProductDetails,
   updateProductDetailsAction,
-}
+};

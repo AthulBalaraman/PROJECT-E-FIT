@@ -48,7 +48,7 @@ module.exports = {
     });
   },
 
-  updateProductDetails: (productId, productDetails,image) => {
+  updateProductDetails: (productId, productDetails, image) => {
     return new Promise((resolve, reject) => {
       db.get()
         .collection(collection.PRODUCTS)
@@ -66,11 +66,11 @@ module.exports = {
               productDescription: productDetails.productDescription,
               picture: image,
             },
-          })
+          }
+        )
         .then((response) => {
           resolve();
         });
     });
   },
 };
-
