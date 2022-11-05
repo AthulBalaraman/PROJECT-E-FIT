@@ -3,7 +3,7 @@ const categories = require("../Model/adminCategory");
 const brand = require("../Model/adminBrand");
 
 const adminProductsPage = (req, res) => {
-  if (req.session.admin) {
+
     adminProduct.displayProducts().then((ProductDetails) => {
       res.render("admin/adminProductspage", {
         admin: true,
@@ -11,13 +11,9 @@ const adminProductsPage = (req, res) => {
         ProductDetails,
       });
     });
-  } else {
-    res.render("admin/adminLogin", { admin: false });
   }
-};
-
 const addProductPage = (req, res) => {
-  if (req.session.admin) {
+
     categories.displayCategory().then((categoriesDetails) => {
       brand.displayBrand().then((brandDetails) => {
         res.render("admin/adminAddProductPage", {
@@ -28,13 +24,10 @@ const addProductPage = (req, res) => {
         });
       });
     });
-  } else {
-    res.render("admin/adminLogin", { admin: false });
   }
-};
 
 const addProductDetails = (req, res) => {
-  if (req.session.admin) {
+ 
     const {
       productName,
       actualPrice,
@@ -64,24 +57,17 @@ const addProductDetails = (req, res) => {
       .then((response) => {
         res.redirect("/admin/adminProductspage");
       });
-  } else {
-    res.render("admin/adminLogin", { admin: false });
   }
-};
 
 const deleteProduct = (req, res) => {
-  if (req.session.admin) {
+
     let productId = req.query.id;
     adminProduct.deleteProduct(productId).then((response) => {
       res.redirect("/admin/adminProductsPage");
     });
-  } else {
-    res.render("admin/adminLogin", { admin: false });
-  }
-};
-
+  } 
 const updateProductDetails = async (req, res) => {
-  if (req.session.admin) {
+
     let productid = req.query.id;
     let product = await adminProduct.getProductDetails(productid);
     categories.displayCategory().then((categoriesDetails) => {
@@ -95,13 +81,10 @@ const updateProductDetails = async (req, res) => {
         });
       });
     });
-  } else {
-    res.render("admin/adminLogin", { admin: false });
-  }
-};
+  } 
 
 const updateProductDetailsAction = (req, res) => {
-  if (req.session.admin) {
+
     let id = req.body.id;
     let newProductData = req.body;
     let newImageId = req.file.filename;
@@ -116,10 +99,7 @@ const updateProductDetailsAction = (req, res) => {
           });
         });
       });
-  } else {
-    res.render("admin/adminLogin", { admin: false });
-  }
-};
+  } 
 
 module.exports = {
   adminProductsPage,

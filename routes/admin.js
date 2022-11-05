@@ -7,7 +7,7 @@ const adminProduct = require('../Controllers/adminProductController')
 const adminUser = require('../Controllers/adminUserController')
 const adminBanner = require('../Controllers/adminBannerController')
 const multer = require('multer')
-
+const adminSessionCheck = require('../middlewares/sessionMiddleware')
 
 const storage = multer.diskStorage({
   destination: './public/images',
@@ -33,41 +33,42 @@ const upload = multer({
   }
 })
 
-router.get('/',admin.adminLoginPage)
+router.get('/',adminSessionCheck.adminSessionChecker,admin.adminLoginPage)
 router.post('/adminloginaction',admin.adminLoginAction)
-router.get('/adminHomePage',admin.adminHomePage)
+router.get('/adminHomePage',adminSessionCheck.adminSessionChecker,admin.adminHomePage)
 router.get('/adminLogout',admin.adminLogout)
 
 
 //----------------------CATEGORY ROUTES---------------------------------------------
 
-router.get('/adminCategoryPage',adminCategory.adminCategoryPage)
-router.post('/addNewCategory',adminCategory.addNewCategory)
-router.get('/deleteCategory',adminCategory.deleteCategory)
+router.get('/adminCategoryPage',adminSessionCheck.adminSessionChecker,adminCategory.adminCategoryPage)
+router.post('/addNewCategory',adminSessionCheck.adminSessionChecker,adminCategory.addNewCategory)
+router.get('/deleteCategory',adminSessionCheck.adminSessionChecker,adminCategory.deleteCategory)
 
 //-------------------------BRAND ROUTES----------------------------------------------
 
-router.get('/adminBrandPage',adminBrand.showBrandPage)
-router.post('/addBrand',adminBrand.addBrand)
-router.get('/deleteBrand',adminBrand.deleteBrand)
+router.get('/adminBrandPage',adminSessionCheck.adminSessionChecker,adminBrand.showBrandPage)
+router.post('/addBrand',adminSessionCheck.adminSessionChecker,adminBrand.addBrand)
+router.get('/deleteBrand',adminSessionCheck.adminSessionChecker,adminBrand.deleteBrand)
 
 //--------------------------PRODUCT ROUTES--------------------------------------------
-router.get('/adminProductspage',adminProduct.adminProductsPage)
-router.get('/addProduct',adminProduct.addProductPage)
-router.post('/addProductDetails',upload.single('productImage'),adminProduct.addProductDetails)
-router.get('/deleteProduct',adminProduct.deleteProduct)
-router.get('/showEditProductPage',adminProduct.updateProductDetails)
-router.post('/updateProductDetails',upload.single('productImage'),adminProduct.updateProductDetailsAction)
+router.get('/adminProductspage',adminSessionCheck.adminSessionChecker,adminProduct.adminProductsPage)
+router.get('/addProduct',adminSessionCheck.adminSessionChecker,adminProduct.addProductPage)
+router.post('/addProductDetails',adminSessionCheck.adminSessionChecker,upload.single('productImage'),adminProduct.addProductDetails)
+router.get('/deleteProduct',adminSessionCheck.adminSessionChecker,adminProduct.deleteProduct)
+router.get('/showEditProductPage',adminSessionCheck.adminSessionChecker,adminProduct.updateProductDetails)
+router.post('/updateProductDetails',adminSessionCheck.adminSessionChecker,upload.single('productImage'),adminProduct.updateProductDetailsAction)
 
 
 //-------------------------------USER ROUTES-------------------------------------------------
 
-router.get('/adminUserPage',adminUser.adminUserPage)
+router.get('/adminUserPage',adminSessionCheck.adminSessionChecker,adminUser.adminUserPage)
 
 
 //---------------------------------BANNER ROUTES-----------------------------------------
 
-router.get('/adminBannerPage',adminBanner.showBannerPage)
-router.post('/addNewBanner',upload.single('bannerImage'),adminBanner.addBanner)
-router.delete('/deleteBanner',adminBanner.deleteBanner)
+router.get('/adminBannerPage',adminSessionCheck.adminSessionChecker,adminBanner.showBannerPage)
+router.post('/addNewBanner',adminSessionCheck.adminSessionChecker,upload.single('bannerImage'),adminBanner.addBanner)
+router.delete('/deleteBanner',adminSessionCheck.adminSessionChecker,adminBanner.deleteBanner)
+
 module.exports = router    

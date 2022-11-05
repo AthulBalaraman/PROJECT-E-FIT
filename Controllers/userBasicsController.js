@@ -65,6 +65,7 @@ const userSignUpaction = (req, res) => {
 };
 
 const userLoginAction = (req, res) => {
+  
   userCredentials.checkUserLogin(req.body).then((response) => {
     if (response.status) {
       userFrontDisplay.displayProducts().then((productDetails) => {

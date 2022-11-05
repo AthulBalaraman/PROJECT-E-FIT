@@ -1,12 +1,9 @@
 const adminLogin = require("../Model/adminLogin");
 
 const adminLoginPage = (req, res) => {
-  if (req.session.admin) {
+
     res.render("admin/adminHome", { admin: true, title: "ADMIN HOME PAGE" });
-  } else {
-    res.render("admin/adminLogin", { admin: false });
-  }
-};
+  } 
 
 const adminLoginAction = (req, res) => {
   console.log(req.body);
@@ -21,12 +18,9 @@ const adminLoginAction = (req, res) => {
 };
 
 const adminHomePage = (req, res) => {
-  if (req.seesion.admin) {
+ 
     res.render("admin/adminHome", { admin: true, title: "ADMIN HOME PAGE" });
-  } else {
-    res.render("admin/adminLogin", { admin: false });
-  }
-};
+  } 
 
 const adminLogout = (req, res) => {
   req.session.destroy(function (err) {
