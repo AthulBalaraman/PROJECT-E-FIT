@@ -67,6 +67,9 @@
     <!-- ADMIN CATEGORY MODAL JS -->
     <script src="/js/adminScript.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
 
     <!-- TEMPLATE CSS -->
     <link rel="stylesheet" href="/css/style.css" />
@@ -102,7 +105,9 @@
   <body style="overflow-x:hidden ;">
     <% if(admin) { %>
       <%- include('../partials/adminHeader.ejs') %>
-      <% } %>
+      <% } else if(user) { %>
+        <%- include('../partials/userHeader.ejs') %>
+        <% } %>
     <%- body %>
 
     <script
@@ -116,5 +121,10 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+
+    <!-- data table-->
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   </body>
 </html>

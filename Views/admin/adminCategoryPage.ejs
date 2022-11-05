@@ -50,7 +50,7 @@ aria-hidden="true"
   </div>
 </form>
   <div class="container">
-    <table class="table  table-hover">
+    <table id="adminCategoryTable" class="table  table-hover">
       <thead>
         <tr>
           <th scope="col">SNO</th>
@@ -89,4 +89,9 @@ aria-hidden="true"
   myModal.addEventListener("shown.bs.modal", function () {
     myInput.focus();
   });
+
+
+  $(document).ready(function () {
+    $('#adminCategoryTable').DataTable();
+});
 </script>

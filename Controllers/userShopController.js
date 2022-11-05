@@ -8,7 +8,7 @@ const viewShop = async (req, res) => {
   brand.displayBrand().then((brand) => {
     category.displayCategory().then((category) => {
       res.render("user/userShoppingPage", {
-        admin: false,
+        admin: false,user:false,
         product,
         brand,
         category,

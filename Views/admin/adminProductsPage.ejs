@@ -4,7 +4,7 @@
               <a href="/admin/addProduct" class="btn btn-success mb-2">ADD PRODUCT</a>
             </div>
             <div class="container">
-              <table class="table  table-hover">
+              <table id="adminProductTable" class="table  table-hover">
                 <thead>
                   <tr>
                     <th scope="col">S.NO</th>
@@ -48,4 +48,8 @@ sidebarBtn.onclick = function() {
 }else
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
+
+$(document).ready(function () {
+    $('#adminProductTable').DataTable();
+});
  </script>

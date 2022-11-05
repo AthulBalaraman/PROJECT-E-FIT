@@ -5,7 +5,7 @@ const showProductDetails = async (req, res) => {
   console.log(productId);
   let product = await productDetails.viewProductDetails(productId);
 
-  res.render("user/productDetails", { admin: false, product });
+  res.render("user/productDetails", { admin: false,user:false, product });
 };
 
 module.exports = {

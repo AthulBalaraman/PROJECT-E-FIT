@@ -1,12 +1,13 @@
 
-  const  userSessionChecker = (req,res,next)=>{
-    if(req.session.user)
+  const userSessionChecker = (req,res,next)=>{
+    if(req.session.loggedIn)
     {
       next()
     }
     else
     {
-      res.redirect('/showUserLoginPage')
+      console.log('+++++++++++++++++++++++++++++++++++++++= session not clear')
+     res.render('user/userLoginPage',{admin:false,user:false})
     }
   }
   
@@ -16,7 +17,7 @@
     }
     else
     {
-      res.render('admin/adminLogin',{admin:false})
+      res.render('admin/adminLogin',{admin:false,user:false})
     }
   }
 

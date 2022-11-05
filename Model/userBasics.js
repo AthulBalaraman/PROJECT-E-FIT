@@ -31,6 +31,7 @@ module.exports = {
             .then((status) => {
               if (status) {
                 response.status = true;
+                response.user = user
                 resolve(response);
               } else {
                 resolve({ status: false });
@@ -46,8 +47,9 @@ module.exports = {
   },
 
   updateverified: (userID) => {
-    return new Promise((resolve, reject) => {
-      db.get()
+    return new Promise(async(resolve, reject) => {
+      let user = await db.get().collection(collection.USER_CREDENTIALS).findOne({_id:userID}) // added this + aync await
+     await db.get()
         .collection(collection.USER_CREDENTIALS)
         .updateOne(
           { _id: userID },
@@ -58,6 +60,7 @@ module.exports = {
           }
         )
         .then((response) => {
+          response.user = user //added this
           resolve(response);
         });
     });

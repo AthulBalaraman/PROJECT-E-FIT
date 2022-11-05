@@ -4,7 +4,7 @@ const userBasics = require('../Controllers/userBasicsController')
 const userPoductDetails = require('../Controllers/userProductDetails')
 const cartController = require('../Controllers/userCartController')
 const userShop = require('../Controllers/userShopController')
-
+const userSessionCheck = require('../middlewares/sessionMiddleware')
 
 router.get('/',userBasics.showLandingPage)
 
@@ -19,13 +19,13 @@ router.post('/userSignUpAction',userBasics.userSignUpaction)
 router.post('/checkOtp',userBasics.checkOtp)
 
 
-router.get('/viewProductDetails',userPoductDetails.showProductDetails)
-router.get('/viewCategory',userShop.viewShop)
+router.get('/viewProductDetails',userSessionCheck.userSessionChecker,userPoductDetails.showProductDetails)
+router.get('/viewCategory',userSessionCheck.userSessionChecker,userShop.viewShop)
 
 
 
 
-router.get('/addToCart',cartController.addToCart)
+router.get('/addToCart',userSessionCheck.userSessionChecker,cartController.addToCart)
 
 
 module.exports = router

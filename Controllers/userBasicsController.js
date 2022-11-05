@@ -6,6 +6,8 @@ const categoryDisplay = require("../Model/adminCategory");
 const userFrontDisplay = require("../Model/userFrontDIsplay");
 const bannerDisplay = require("../Model/adminBanner");
 
+
+
 let mailTransporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -20,11 +22,14 @@ const showLandingPage = (req, res) => {
   userFrontDisplay.displayProducts().then((productDetails) => {
     categoryDisplay.displayCategory().then((category) => {
       bannerDisplay.showBanner().then((banner) => {
-        res.render("user/userLandingPage", {
-          admin: false,
+        let userData = req.session.user
+        console.log('user data ================= ',userData)
+        res.render("user/userHomePage", {
+          admin: false, user:true,
           productDetails,
           category,
           banner,
+          userData
         });
       });
     });
@@ -32,11 +37,11 @@ const showLandingPage = (req, res) => {
 };
 
 const showLoginPage = (req, res) => {
-  res.render("user/userLoginPage", { admin: false });
+  res.render("user/userLoginPage", { admin: false ,user:false});
 };
 
 const showSignUpPage = (req, res) => {
-  res.render("user/userSignUpPage", { admin: false });
+  res.render("user/userSignUpPage", { admin: false ,user:false});
 };
 
 const userSignUpaction = (req, res) => {
@@ -60,28 +65,18 @@ const userSignUpaction = (req, res) => {
     .insertUserCredentials(verified, username, useremail, userpassword)
     .then((response) => {
       userID = response.insertedId;
-      res.render("user/otpVerificationPage", { admin: false });
+      res.render("user/otpVerificationPage", { admin: false,user:false, });
     });
 };
 
-const userLoginAction = (req, res) => {
-  
+const userLoginAction = (req, res) => {  
   userCredentials.checkUserLogin(req.body).then((response) => {
     if (response.status) {
-      userFrontDisplay.displayProducts().then((productDetails) => {
-        categoryDisplay.displayCategory().then((category) => {
-          bannerDisplay.showBanner().then((banner) => {
-            res.render("user/userHomePage", {
-              admin: false,
-              productDetails,
-              category,
-              banner,
-            });
-          });
-        });
-      });
+      req.session.loggedIn = true
+      req.session.user = response.user //added this
+      res.redirect('/') // added this check
     } else {
-      res.render("user/userLoginPage", { admin: false });
+     res.redirect('/showUserLoginPage')
     }
   });
 };
@@ -90,17 +85,21 @@ const checkOtp = (req, res) => {
   console.log(OTP);
   console.log(userID);
   if (OTP == req.body.otpSend) {
-    // let verified = 1
+    req.session.loggedIn = true //added this
     userCredentials.updateverified(userID).then((response) => {
       console.log("success");
       userFrontDisplay.displayProducts().then((productDetails) => {
         categoryDisplay.displayCategory().then((category) => {
           bannerDisplay.showBanner().then((banner) => {
+           
+            req.session.user = response.user//added this
+            let userData = response.user//added this
             res.render("user/userHomePage", {
-              admin: false,
+              admin: false,user:true,
               productDetails,
               category,
               banner,
+              userData//added this
             });
           });
         });
@@ -111,8 +110,18 @@ const checkOtp = (req, res) => {
   }
 };
 
-const userLogout = (req, res) => {
-  res.redirect("/");
+const userLogout = (req, res) => { //added this
+  req.session.destroy((err)=>{
+    if(err){
+      console.log("error")
+      res.send("error")
+    }
+    else
+    {
+      res.redirect("/");
+    }
+  })
+
 };
 
 module.exports = {
