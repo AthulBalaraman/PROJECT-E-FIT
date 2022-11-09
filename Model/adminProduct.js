@@ -4,6 +4,9 @@ const { ObjectId } = require("mongodb");
 
 module.exports = {
   insertProduct: (imageID, newProduct) => {
+    newProduct.sellingPrice = parseInt(newProduct.sellingPrice)
+    newProduct.actualPrice = parseInt(newProduct.actualPrice)
+    newProduct.weight = parseInt(newProduct.weight)
     return new Promise(async (resolve, reject) => {
       db.get()
         .collection(collection.PRODUCTS)
@@ -49,6 +52,9 @@ module.exports = {
   },
 
   updateProductDetails: (productId, productDetails, image) => {
+    productDetails.sellingPrice = parseInt(productDetails.sellingPrice)
+    productDetails.actualPrice = parseInt(productDetails.actualPrice)
+    productDetails.weight = parseInt(productDetails.weight)
     return new Promise((resolve, reject) => {
       db.get()
         .collection(collection.PRODUCTS)

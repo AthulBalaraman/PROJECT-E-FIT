@@ -1,21 +1,26 @@
 const cartModel = require("../Model/userCart");
 const category = require('../Model/adminCategory')
-const cartController = require('../Model/userCart')
+const checkOut = require('../Model/userCheckout')
+
+const { response } = require("express");
 
 
 const showCartPage = async (req,res)=>{
   let products = await cartModel.getCartProducts(req.session.user._id)
   let cartCount = null 
+  let total = await checkOut.getTotalAmount(req.session.user._id)
   if(req.session.user){
-    cartCount = await cartController.getCartCount(req.session.user._id)
+    cartCount = await cartModel.getCartCount(req.session.user._id)
+    
   }
+  
   console.log('cart products ============ >>>> ',products[0].productDetails);
   category.displayCategory().then((category)=>{
     
     let userData = req.session.user
     let userDetails = req.session.user._id
-    
-    res.render('user/userCartShowPage',{admin:false,user:true,category,userData,products,userDetails,cartCount})
+ 
+    res.render('user/userCartShowPage',{admin:false,user:true,category,userData,products,userDetails,cartCount,total})
   })
   
 }
@@ -31,7 +36,7 @@ const addToCart = (req,res)=>{
 
 const changeProductQuantity = (req,res,next)=>{
   cartModel.changeProductQuantity(req.body).then(()=>{
-
+  res.json(response)
   })
 }
 

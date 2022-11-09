@@ -29,7 +29,7 @@ const showLandingPage = async(req, res) => {
       bannerDisplay.showBanner().then((banner) => {
         let userData = req.session.user
 
-
+        
         console.log('user data ================= ',userData)
         res.render("user/userHomePage", {
           admin: false, user:true,

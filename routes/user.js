@@ -5,6 +5,7 @@ const userPoductDetails = require('../Controllers/userProductDetails')
 const cartController = require('../Controllers/userCartController')
 const userShop = require('../Controllers/userShopController')
 const userSessionCheck = require('../middlewares/sessionMiddleware')
+const proceedToCheckOut = require('../Controllers/userCheckout')
 
 
 router.get('/',userBasics.showLandingPage)
@@ -26,6 +27,9 @@ router.get('/viewCategory',userSessionCheck.userSessionChecker,userShop.viewShop
 
 router.get('/showCartPage',userSessionCheck.userSessionChecker,cartController.showCartPage)
 router.post('/addToCart',userSessionCheck.userSessionChecker,cartController.addToCart)
-router.post('/changeProductQunatity',cartController.changeProductQuantity)
+router.post('/changeProductQuantity',cartController.changeProductQuantity)
+
+
+router.get('/proceedToCheckOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showCheckOutPage)
 
 module.exports = router
