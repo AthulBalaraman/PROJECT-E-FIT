@@ -5,6 +5,7 @@ const { response } = require("express");
 const categoryDisplay = require("../Model/adminCategory");
 const userFrontDisplay = require("../Model/userFrontDIsplay");
 const bannerDisplay = require("../Model/adminBanner");
+const cartController = require('../Model/userCart')
 
 
 
@@ -18,18 +19,25 @@ let mailTransporter = nodemailer.createTransport({
 
 const OTP = `${Math.floor(1000 + Math.random() * 9000)}`;
 
-const showLandingPage = (req, res) => {
+const showLandingPage = async(req, res) => {
+  let cartCount = null 
+  if(req.session.user){
+    cartCount = await cartController.getCartCount(req.session.user._id)
+  }
   userFrontDisplay.displayProducts().then((productDetails) => {
     categoryDisplay.displayCategory().then((category) => {
       bannerDisplay.showBanner().then((banner) => {
         let userData = req.session.user
+
+
         console.log('user data ================= ',userData)
         res.render("user/userHomePage", {
           admin: false, user:true,
           productDetails,
           category,
           banner,
-          userData
+          userData,
+          cartCount
         });
       });
     });

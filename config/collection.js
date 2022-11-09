@@ -4,6 +4,7 @@ module.exports = {
   BRANDS:'brandsCollection',
   PRODUCTS:'productDetailsCollection',
   USER_CREDENTIALS:'userCredentials',
-  BANNER:'bannercollection'
+  BANNER:'bannercollection',
+  CART:'userCartCollection'
 }
 

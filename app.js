@@ -8,7 +8,7 @@ const expressLayouts = require('express-ejs-layouts')
 const db = require('./config/connection')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
-
+const MongoDBSession = require('connect-mongodb-session')(session)
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(expressLayouts)
@@ -18,11 +18,17 @@ app.set('view engine','ejs')
 app.set('layout','./layout/layout')
 app.use(cookieParser())
 
+const store = new MongoDBSession({
+  uri: 'mongodb://0.0.0.0:27017',
+  collection: 'MySession'
+})
+
 app.use(session({
   secret:"1234",
   saveUninitialized:true,
   cookie:{maxAge:300000},
-  resave:false
+  resave:false,
+  store:store
 
 }))
 app.use(function (req, res, next) {
