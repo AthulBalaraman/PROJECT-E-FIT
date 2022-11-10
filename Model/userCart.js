@@ -87,7 +87,7 @@ module.exports = {
         }
 
       ]).toArray()
-      console.log('cart items ===========>>>>>>>>>>>>>>>>',cartItems)
+
       resolve(cartItems)
   })
   },
@@ -131,6 +131,22 @@ module.exports = {
         })
       }
 
+    })
+  },
+
+
+  removeCartProduct:(details)=>{
+    return new Promise((resolve,reject)=>{
+      console.log(details);
+      db.get().collection(collection.CART).updateOne(
+        {_id:ObjectID(details.cart)},
+        {
+          $pull:{products:{item:ObjectID(details.product)}}
+        }
+        
+      ).then(()=>{
+        resolve({productRemoved:true})
+      })
     })
   }
 

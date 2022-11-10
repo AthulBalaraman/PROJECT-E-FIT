@@ -5,7 +5,8 @@ const { response } = require("express");
 const categoryDisplay = require("../Model/adminCategory");
 const userFrontDisplay = require("../Model/userFrontDIsplay");
 const bannerDisplay = require("../Model/adminBanner");
-const cartController = require('../Model/userCart')
+const cartModel = require('../Model/userCart')
+const wishListModel = require('../Model/userWishListModel')
 
 
 
@@ -21,8 +22,10 @@ const OTP = `${Math.floor(1000 + Math.random() * 9000)}`;
 
 const showLandingPage = async(req, res) => {
   let cartCount = null 
+  let wishListCount = null
   if(req.session.user){
-    cartCount = await cartController.getCartCount(req.session.user._id)
+    cartCount = await cartModel.getCartCount(req.session.user._id)
+    wishListCount = await wishListModel.getWishListCount(req.session.user._id)
   }
   userFrontDisplay.displayProducts().then((productDetails) => {
     categoryDisplay.displayCategory().then((category) => {
@@ -37,7 +40,8 @@ const showLandingPage = async(req, res) => {
           category,
           banner,
           userData,
-          cartCount
+          cartCount,
+          wishListCount
         });
       });
     });
@@ -89,25 +93,34 @@ const userLoginAction = (req, res) => {
   });
 };
 
-const checkOtp = (req, res) => {
+const checkOtp = async(req, res) => {
   console.log(OTP);
-  console.log(userID);
+
+  let cartCount = null 
+  let wishListCount = null
+
   if (OTP == req.body.otpSend) {
     req.session.loggedIn = true //added this
     userCredentials.updateverified(userID).then((response) => {
       console.log("success");
-      userFrontDisplay.displayProducts().then((productDetails) => {
-        categoryDisplay.displayCategory().then((category) => {
-          bannerDisplay.showBanner().then((banner) => {
+      userFrontDisplay.displayProducts().then(async(productDetails) => {
+        categoryDisplay.displayCategory().then(async(category) => {
+          bannerDisplay.showBanner().then(async(banner) => {
            
-            req.session.user = response.user//added this
-            let userData = response.user//added this
+            req.session.user = response.user
+            let userData = response.user
+            if(req.session.user){
+              cartCount = await cartModel.getCartCount(req.session.user._id)
+              wishListCount = await wishListModel.getWishListCount(req.session.user._id)
+            }
             res.render("user/userHomePage", {
               admin: false,user:true,
               productDetails,
               category,
               banner,
-              userData//added this
+              userData,
+              cartCount,
+              wishListCount
             });
           });
         });

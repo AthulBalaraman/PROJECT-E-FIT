@@ -42,10 +42,15 @@ module.exports = {
               $sum:{$multiply:['$quantity','$productDetails.sellingPrice']}
             }
           }
+        },
+        {
+          $project:{
+            _id:0,
+            total:1
+          }
         }
 
       ]).toArray()
-      console.log(total);
       resolve(total)
   })
   }
