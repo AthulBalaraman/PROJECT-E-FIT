@@ -39,8 +39,12 @@ const addToCart = (req,res)=>{
 }
 
 const changeProductQuantity = (req,res,next)=>{
-  cartModel.changeProductQuantity(req.body).then(()=>{
-  res.json(response)
+
+  cartModel.changeProductQuantity(req.body).then(async(response)=>{
+    let total = await checkOut.getTotalAmount(req.body.user)
+    
+    response.total = total
+     res.json(response)
   })
 }
 

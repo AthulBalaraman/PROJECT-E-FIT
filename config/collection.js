@@ -6,6 +6,7 @@ module.exports = {
   USER_CREDENTIALS:'userCredentials',
   BANNER:'bannercollection',
   CART:'userCartCollection',
-  WISHLIST:'userWishlistCollection'
+  WISHLIST:'userWishlistCollection',
+  ORDER:'orderCollection'
 }
 

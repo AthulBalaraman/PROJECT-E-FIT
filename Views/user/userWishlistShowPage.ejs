@@ -6,6 +6,7 @@
                     <thead class="bg-secondary text-dark">
                         <tr>
                             <th>Products</th>
+                            <th>Image</th>
                             <th>Price</th>
                             <th>Add To Cart</th>
                             <th>Remove</th>
@@ -14,10 +15,11 @@
                     <tbody class="align-middle">
                         <% for(var i=0;i<products.length;i++) { %>
                         <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> <%= products[i].productDetails.productName%></td>
+                            <td class="align-middle"> <%= products[i].productDetails.productName%></td>
+                            <td class="align-middle"><img src="/images/<%= products[i].productDetails.picture %>" alt="" style="width: 50px;"></td>
                             <td class="align-middle">₹<%= products[i].productDetails.sellingPrice %></td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary">ADD TO CART</button></td>
-                            <td class="align-middle"><button onclick="removeWishListProduct('<%= products[i]._id %>','<%= products[i].productDetails._id %>',1)"class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><button onclick="removeWishListProduct('<%= products[i]._id %>','<%= products[i].productDetails._id %>')" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                         </tr>
                         <% } %>
                        

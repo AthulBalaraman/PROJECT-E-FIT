@@ -38,11 +38,11 @@ module.exports = {
       }
       else
       {
-        let cartObj = {
+        let wishlistObj = {
           user:ObjectId(userId),
           products:[proObj]
         }
-        db.get().collection(collection.WISHLIST).insertOne(cartObj).then((response)=>{
+        db.get().collection(collection.WISHLIST).insertOne(wishlistObj).then((response)=>{
           resolve()
         })
       }

@@ -7,6 +7,8 @@ const userShop = require('../Controllers/userShopController')
 const userSessionCheck = require('../middlewares/sessionMiddleware')
 const proceedToCheckOut = require('../Controllers/userCheckout')
 const wishListController  = require('../Controllers/userWishListController')
+const placeOrderController = require('../Controllers/userPlaceOrder')
+const userProfileController = require('../Controllers/userProfileController')
 
 router.get('/',userBasics.showLandingPage)
 
@@ -33,6 +35,13 @@ router.delete('/removeCartProduct',userSessionCheck.userSessionChecker,cartContr
 
 
 router.get('/proceedToCheckOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showCheckOutPage)
+router.post('/placeOrder',userSessionCheck.userSessionChecker,placeOrderController.placeOrder)
+router.get('/orderPlacedPage',userSessionCheck.userSessionChecker,placeOrderController.showOrderPlaced)
+router.post('/verifyPayment',userSessionCheck.userSessionChecker,placeOrderController.verifyPayment)
+
+
+
+router.get('/viewOrders',userSessionCheck.userSessionChecker,userProfileController.viewOrders)
 
 //------------------------------------ WISHLIST ROUTES -------------------------------------------
 router.get('/showWishListPage',userSessionCheck.userSessionChecker,wishListController.showWishListPage)
