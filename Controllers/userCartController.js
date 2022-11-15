@@ -10,7 +10,11 @@ const showCartPage = async (req,res)=>{
   let products = await cartModel.getCartProducts(req.session.user._id)
   let cartCount = null 
   let wishListCount = null
-  let total = await checkOut.getTotalAmount(req.session.user._id)
+  let total = 0
+  if(products.length>0){
+    total = await checkOut.getTotalAmount(req.session.user._id)
+  }
+
 
   
   console.log(total)

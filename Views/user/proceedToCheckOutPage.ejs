@@ -424,11 +424,6 @@
                     "handler":function(response){
                         verifyPayment(response,order)
                     },
-                    "prefill": {
-                            "name": "Gaurav Kumar",
-                            "email": "gaurav.kumar@example.com",
-                            "contact": "9999999999"
-                            },
                     "notes": {
                              "address": "Razorpay Corporate Office"
                               },
@@ -447,7 +442,17 @@
                     payment,
                     order
                 },
-                method:'post'
+                method:'post',
+                success:(response)=>{
+                    if(response.status)
+                    {
+                        location.href ='/orderPlacedPage'
+                    }
+                    else
+                    {
+                        alert('payment failed')
+                    }
+                }
             })
         }
 

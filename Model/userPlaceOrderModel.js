@@ -82,4 +82,37 @@ module.exports = {
       })
     });
   },
+
+
+  verifyPayment:(details)=>{
+    return new Promise((resolve,reject)=>{
+      let {
+        createHmac,
+      } = require('node:crypto');
+    let hmac = createHmac('sha256','Q24tTFMKWdtqDpT5xzHxjbeH');   
+
+    hmac.update(details.payment.razorpay_order_id + '|' + details.payment.razorpay_payment_id);   
+    hmac = hmac.digest('hex')
+    if(hmac == details.payment.razorpay_signature){
+        resolve()
+    }else{
+        reject()
+    }
+    })
+  },
+
+  changePaymentStatus: (orderID)=>{
+    return new Promise((resolve,reject)=>{
+        db.get().collection(collection.ORDER).updateOne(
+            {_id:ObjectID(orderID)},
+            {
+                $set:{
+                    status: "Placed"
+                }
+            }
+            ).then(()=>{
+                resolve()
+            })
+    })
+}
 };
