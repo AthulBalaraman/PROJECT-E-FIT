@@ -3,7 +3,7 @@ const cartModel = require('../Model/userCart')
 const wishListModel = require('../Model/userWishListModel')
 const category = require('../Model/adminCategory')
 const { resolveContent } = require('nodemailer/lib/shared')
-const userDetailsModel = require('../Model/adminUser')
+
 
 
 const viewOrders = async(req,res)=>{
@@ -131,13 +131,40 @@ const showPasswordChangePage =async(req,res)=>{
           wishListCount,
           userDetails
         });
-      });
+      });  
 }
 
+const updatePassword = async(req,res)=>{
+  let cartCount = null;
+  let wishListCount = null
+  if (req.session.user) {
+    cartCount = await cartModel.getCartCount(req.session.user._id);
+    wishListCount = await wishListModel.getWishListCount(req.session.user._id)
+  }
+  
+  category.displayCategory().then(async(category) => {
+    let userData = req.session.user;
+    let userDetails = await userProfileModel.findUser(userData._id)
+    userProfileModel.updatePassword(req.body,userData).then(()=>{
+      res.render("user/userProfilePage", {
+        admin:false,
+        user:true,
+        userData,
+        cartCount,
+        category,
+        wishListCount,
+        userDetails
+      });
+    }); 
+    })
+     
+}
 module.exports ={
   viewOrders,
   showUserProfile,
   editProfile,
   editProfileDetails,
-  showPasswordChangePage
+  showPasswordChangePage,
+  updatePassword
+  
 }

@@ -56,4 +56,5 @@ router.post('/editedUserProfile',userSessionCheck.userSessionChecker,userProfile
 
 
 router.get('/changePassword',userSessionCheck.userSessionChecker,userProfileController.showPasswordChangePage)
+router.post('/updatePassword',userSessionCheck.userSessionChecker,userProfileController.updatePassword)
 module.exports = router
