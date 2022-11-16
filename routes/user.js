@@ -48,4 +48,12 @@ router.get('/showWishListPage',userSessionCheck.userSessionChecker,wishListContr
 router.post('/addToWishList',userSessionCheck.userSessionChecker,wishListController.addToWishList)
 router.delete('/removeWishListProduct',userSessionCheck.userSessionChecker,wishListController.removeWishListProduct)
 
+
+//------------------------------------- PROFILE ROUTES -------------------------------------------
+router.get('/userProfilePage',userSessionCheck.userSessionChecker,userProfileController.showUserProfile)
+router.get('/editProfile',userSessionCheck.userSessionChecker,userProfileController.editProfile)
+router.post('/editedUserProfile',userSessionCheck.userSessionChecker,userProfileController.editProfileDetails)
+
+
+router.get('/changePassword',userSessionCheck.userSessionChecker,userProfileController.showPasswordChangePage)
 module.exports = router
