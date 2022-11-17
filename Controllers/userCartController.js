@@ -15,9 +15,7 @@ const showCartPage = async (req,res)=>{
     total = await checkOut.getTotalAmount(req.session.user._id)
   }
 
-
-  
-  console.log(total)
+  let TOTAL = total[0].total
   if(req.session.user){
     cartCount = await cartModel.getCartCount(req.session.user._id)
     wishListCount = await wishListModel.getWishListCount(req.session.user._id)
@@ -26,9 +24,12 @@ const showCartPage = async (req,res)=>{
   category.displayCategory().then((category)=>{
     
     let userData = req.session.user
+    if(products.length<0)
+    {
+        TOTAL = 0 
+    }
     let userDetails = req.session.user._id
- 
-    res.render('user/userCartShowPage',{admin:false,user:true,category,userData,products,userDetails,cartCount,total,wishListCount})
+    res.render('user/userCartShowPage',{admin:false,user:true,category,userData,products,userDetails,cartCount,TOTAL,wishListCount})
   })
   
 }

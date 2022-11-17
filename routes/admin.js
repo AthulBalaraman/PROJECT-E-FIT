@@ -6,6 +6,8 @@ const adminBrand = require('../Controllers/adminBrandController')
 const adminProduct = require('../Controllers/adminProductController')
 const adminUser = require('../Controllers/adminUserController')
 const adminBanner = require('../Controllers/adminBannerController')
+const adminCoupon = require('../Controllers/adminCouponController')
+
 const multer = require('multer')
 const adminSessionCheck = require('../middlewares/sessionMiddleware')
 
@@ -71,4 +73,9 @@ router.get('/adminBannerPage',adminSessionCheck.adminSessionChecker,adminBanner.
 router.post('/addNewBanner',adminSessionCheck.adminSessionChecker,upload.single('bannerImage'),adminBanner.addBanner)
 router.delete('/deleteBanner',adminSessionCheck.adminSessionChecker,adminBanner.deleteBanner)
 
+
+//------------------------------------- COUPON ROUTES ------------------------------------------
+router.get('/adminCouponPage',adminSessionCheck.adminSessionChecker,adminCoupon.showCouponPage)
+router.post('/addNewCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.addCoupon)
+router.get('/deleteCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.deleteCoupon)
 module.exports = router    

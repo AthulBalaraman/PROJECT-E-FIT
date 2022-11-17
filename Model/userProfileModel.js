@@ -47,6 +47,7 @@ module.exports = {
         console.log(body);
         console.log(user.userpassword);
         console.log(body.currentPassword);
+       
          bcrypt.compare(user.userpassword,body.currentPassword).then((status)=>{
           console.log(status);
           if(status)
