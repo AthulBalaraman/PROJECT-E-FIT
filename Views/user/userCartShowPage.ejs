@@ -47,14 +47,15 @@
 
 
             <div class="col-lg-4">
-                 <form class="mb-5" action="">
+                
                     <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code" name="couponCode">
+                        <input type="text" class="form-control p-4" placeholder="Coupon Code" name="couponCode" id="couponCode">
+                        <span id="couponMessage"></span>
                         <div class="input-group-append">
                             <button class="btn btn-primary" onclick="applyCoupon('<%= TOTAL %>')">Apply Coupon</button>
                         </div>
                     </div>
-                </form> 
+             
 
                 
                 <div class="card border-secondary mb-5">
@@ -66,6 +67,11 @@
                             <h6 class="font-weight-medium">Subtotal</h6>
                             <h6 class="font-weight-medium">
                                 ₹<%= TOTAL %></h6>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3 pt-1">
+                            <h6 class="font-weight-medium">Discount</h6>
+                            <h6 class="font-weight-medium" id="discountId">0
+                            </h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
@@ -159,5 +165,34 @@
                     window.location.reload()
                 })
         }
+
+
+      function applyCoupon(TOTAL){
+        let couponCode = document.getElementById('couponCode').value.toUpperCase()
+        let message = document.getElementById('couponMessage');
+        let discountlDisplay = document.getElementById('discountId')
+        let finalTotal = document.getElementById('final_total')
+        fetch('/userCartShowPage/applyCoupon',{
+            method:'post',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(
+                {couponCode})
+        }).then(res => res.json()).then(data=>{
+
+            if(data.couponStatus == true)
+            {
+                message.innerHTML == ''
+                discountlDisplay.innerHTML = data.discount
+                finalTotal.innerHTML = data.discountedTotal
+            }
+            else 
+            {
+                message.innerHTML= 'COUPON NOT ACCEPTABLE'
+                discountlDisplay.innerHTML = data.discount
+                finalTotal.innerHTML = data.discountedTotal
+
+            }
+        })
+      }
 
     </script>

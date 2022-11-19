@@ -107,7 +107,7 @@ module.exports = {
   
   removeWishListProduct:(details)=>{
     return new Promise((resolve,reject)=>{
-      console.log(details);
+      console.log('detsbgtrvfedsfss',details);
       db.get().collection(collection.WISHLIST).updateOne(
         {_id:ObjectId(details.wishList)},
         {

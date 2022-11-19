@@ -35,11 +35,16 @@ aria-hidden="true"
       ></button>
     </div>
     <div class="modal-body">
+      <label for="newCategoryName" class="text-primary">COUPON NAME : </label>
+      <input type="text" name="couponName" id="newCategoryName"><br>
       <label for="newCategoryName" class="text-primary">COUPON CODE : </label>
-      <input type="text" name="newCoupon" id="newCategoryName"><br>
+      <input type="text" name="couponCode" id="newCategoryName"><br>
       <label for="newCategoryName" class="text-primary">DISCOUNT : </label>
-      <input type="text" name="discount" id="newCategoryName">
-
+      <input type="text" name="discount" id="newCategoryName"><br>
+      <label for="newCategoryName" class="text-primary">START DATE : </label>
+      <input type="date" name="startDate" id="newCategoryName"><br>
+      <label for="newCategoryName" class="text-primary">END DATE : </label>
+      <input type="date" name="endDate" id="newCategoryName"><br>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -57,7 +62,10 @@ aria-hidden="true"
       <thead>
         <tr>
           <th scope="col">SNO</th>
+          <th scope="col">COUPON NAME</th>
           <th scope="col">COUPON CODE</th>
+          <th scope="col">START DATE</th>
+          <th scope="col">END DATE</th>
           <th scope="col">DISCOUNT</th>
           <th scope="col">DELETE COUPON</th>
         </tr>
@@ -66,7 +74,10 @@ aria-hidden="true"
 <% for(var i=0;i<availableCoupons.length;i++) {%>
         <tr>
           <th scope="row"><%= i+1 %></th>
-          <td><%= availableCoupons[i].newCoupon %></td>
+          <td><%= availableCoupons[i].couponName %></td>
+          <td><%= availableCoupons[i].couponCode %></td>
+          <td><%= availableCoupons[i].startDate %></td>
+          <td><%= availableCoupons[i].endDate %></td>
           <td><%= availableCoupons[i].discount %></td>
           <td><a href="/admin/deleteCoupon?id=<%= availableCoupons[i]._id %>" class="btn btn-danger">DELETE COUPON</a></td>
         </tr>

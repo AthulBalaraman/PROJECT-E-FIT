@@ -13,6 +13,7 @@ const showCheckOutPage = async (req, res) => {
     wishListCount = await wishListModel.getWishListCount(req.session.user._id)
   }
   let total = await checkOut.getTotalAmount(req.session.user._id)
+  
   category.displayCategory().then((category) => {
     let userData = req.session.user;
     res.render("user/proceedToCheckOutPage", {

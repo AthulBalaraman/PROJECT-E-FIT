@@ -9,6 +9,7 @@ const proceedToCheckOut = require('../Controllers/userCheckout')
 const wishListController  = require('../Controllers/userWishListController')
 const placeOrderController = require('../Controllers/userPlaceOrder')
 const userProfileController = require('../Controllers/userProfileController')
+const couponController = require('../Controllers/userCouponController')
 
 router.get('/',userBasics.showLandingPage)
 
@@ -32,7 +33,7 @@ router.get('/showCartPage',userSessionCheck.userSessionChecker,cartController.sh
 router.post('/addToCart',userSessionCheck.userSessionChecker,cartController.addToCart)
 router.post('/changeProductQuantity',cartController.changeProductQuantity)
 router.delete('/removeCartProduct',userSessionCheck.userSessionChecker,cartController.removeCartProduct)
-
+router.post('/userCartShowPage/applyCoupon',userSessionCheck.userSessionChecker,couponController.applyCoupon)
 
 router.get('/proceedToCheckOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showCheckOutPage)
 router.post('/placeOrder',userSessionCheck.userSessionChecker,placeOrderController.placeOrder)

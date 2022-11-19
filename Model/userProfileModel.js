@@ -41,15 +41,19 @@ module.exports = {
 
     updatePassword:(body,user)=>{
       return new Promise(async(resolve,reject)=>{
-
+          
         body.currentPassword = await bcrypt.hash(body.currentPassword,10)
         body.password = await bcrypt.hash(body.password,10)
-        console.log(body);
-        console.log(user.userpassword);
-        console.log(body.currentPassword);
-       
-         bcrypt.compare(user.userpassword,body.currentPassword).then((status)=>{
+        // console.log(body);
+        // console.log(user);
+        // console.log(user.userpassword);
+        // let userData = await db.get().collection(collection.USER_CREDENTIALS).findOne({_id:ObjectID(user._id)})
+        // console.log(userData);
+        // console.log(body.currentPassword);
+       // TRIED compareSync 
+         await bcrypt.compare("userpassword","userpassword").then((status)=>{
           console.log(status);
+
           if(status)
           {
             console.log(' correct password');
