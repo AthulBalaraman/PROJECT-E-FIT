@@ -52,7 +52,7 @@
                         <input type="text" class="form-control p-4" placeholder="Coupon Code" name="couponCode" id="couponCode">
                         <span id="couponMessage"></span>
                         <div class="input-group-append">
-                            <button class="btn btn-primary" onclick="applyCoupon('<%= TOTAL %>')">Apply Coupon</button>
+                            <button class="btn btn-primary" onclick="applyCoupon()">Apply Coupon</button>
                         </div>
                     </div>
              
@@ -87,7 +87,8 @@
                                  %>
                                  <%= finalTotal %></h5>
                         </div>
-                        <a href="/proceedToCheckOut" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a>
+                        <!-- <a href="/proceedToCheckOut" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</a> -->
+                        <button class="btn btn-primary my-3 py-3" onclick="proceedToCheckout('<%= TOTAL %>')">PROCEED TO CHECKOUT</button>
                     </div>
                 </div>
             </div>
@@ -167,7 +168,7 @@
         }
 
 
-      function applyCoupon(TOTAL){
+      function applyCoupon(){
         let couponCode = document.getElementById('couponCode').value.toUpperCase()
         let message = document.getElementById('couponMessage');
         let discountlDisplay = document.getElementById('discountId')
@@ -194,5 +195,19 @@
             }
         })
       }
+
+      function proceedToCheckout(TOTAL){
+        let couponCode = ''
+        couponCode = document.getElementById('couponCode').value.toUpperCase()
+        console.log('proceeded to checkout');
+        fetch('/userCartShowPage/proceedToCheckingOut',{
+            method:'post',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify(
+                {couponCode,TOTAL})
+        })
+
+        }
+      
 
     </script>
