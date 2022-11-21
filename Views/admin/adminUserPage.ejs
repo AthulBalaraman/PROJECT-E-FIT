@@ -11,8 +11,8 @@
                 <th scope="col">S.NO</th>
                 <th scope="col">NAME</th>
                 <th scope="col">EMAIL</th>
-                <th scope="col">BLOCK USER</th>
-                <th scope="col">UNBLOCK USER</th>
+                <th scope="col">ACTION</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -21,9 +21,17 @@
                 <% for(var i=0;i<User_Details.length;i++) { %>
                 <th scope="row"><%= i+1 %></th>
                 <td><%= User_Details[i].username %></td>
-                <td><%= User_Details[i].useremail %></td>
-                <td><input type="button" name="blockUser" id="blockUser" class="btn btn-danger" value="BLOCK"></td>
-                <td><input type="button" name="unblockUser" id="unblockUser" class="btn btn-success" value="UNBLOCK"></td>
+                <td><%= User_Details[i].useremail %></td>4
+                <td>
+                <%if(User_Details[i].state == 'active') {%>
+                  <button onclick="userBlock('<%= User_Details[i]._id %>')" class="btn btn-danger">BLOCK</button>
+                  <% } else {%>
+                    <button onclick="userUnblock('<%= User_Details[i]._id %>')" class="btn btn-success">UNBLOCK</button>
+                 <% } %>
+                </td>
+                
+
+
               </tr>
               <% } %>
             </tbody>
@@ -44,5 +52,41 @@
   $(document).ready(function () {
     $('#userPage').DataTable();
 });
+
+
+function userBlock(userId)
+{
+  
+  fetch(
+    '/admin/adminUserPage/block',{
+      method:'post',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(
+                {userId})
+    }
+  ).then(()=>{
+    window.location.reload()
+  }).catch((error)=>{
+    console.error('error = > ',error);
+  })
+}
+
+function userUnblock(userId)
+{
+  fetch(
+    '/admin/adminUserPage/unblock',{
+      method:'post',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(
+                {userId})
+    }
+  ).then(()=>{
+    window.location.reload()
+  }).catch((error)=>{
+    console.error('error = > ',error);
+  })
+}
+
+
   </script>
 

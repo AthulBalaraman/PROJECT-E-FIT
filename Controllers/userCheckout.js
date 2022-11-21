@@ -38,24 +38,25 @@ const showCheckingOutPage = async(req,res)=>{
     cartCount = await cartModel.getCartCount(req.session.user._id);
     wishListCount = await wishListModel.getWishListCount(req.session.user._id)
   }
-  let finalTotal = req.body.TOTAL
+  let finalTotal = req.body.TOTAL//cart total
   let details = req.body
   if(details.couponCode==='')
   {
     finalTotal = details.TOTAL
-    category.displayCategory().then((category) => {
-      let userData = req.session.user;
-      res.render("user/proceedToCheckOutPage", {
-        admin: false,
-        user: true,
-        userData,
-        cartCount,
-        category,
-        products,
-        finalTotal,
-        wishListCount
-      });
-    });
+    // category.displayCategory().then((category) => {
+    //   let userData = req.session.user;
+
+    //   res.render("user/proceedToCheckOutPage", {
+    //     admin: false,
+    //     user: true,
+    //     userData,
+    //     cartCount,
+    //     category,
+    //     products,
+    //     finalTotal,
+    //     wishListCount
+    //   });
+    // });
     
   }
   else{
@@ -68,37 +69,39 @@ const showCheckingOutPage = async(req,res)=>{
         console.log('########################################',response);
         finalTotal = response.discountedTotal
         console.log('this is final total',finalTotal);
-        category.displayCategory().then((category) => {
-          let userData = req.session.user;
-          res.render("user/proceedToCheckOutPage", {
-            admin: false,
-            user: true,
-            userData,
-            cartCount,
-            category,
-            products,
-            finalTotal,
-            wishListCount
-          });
-      });
+        
+      //   category.displayCategory().then((category) => {
+      //     let userData = req.session.user;
+          
+      //     res.render("user/proceedToCheckOutPage", {
+      //       admin: false,
+      //       user: true,
+      //       userData,
+      //       cartCount,
+      //       category,
+      //       products,
+      //       finalTotal,
+      //       wishListCount
+      //     });
+      // });
       });
     }
     else
     {
       finalTotal = details.TOTAL
-      category.displayCategory().then((category) => {
-        let userData = req.session.user;
-        res.render("user/proceedToCheckOutPage", {
-          admin: false,
-          user: true,
-          userData,
-          cartCount,
-          category,
-          products,
-          finalTotal,
-          wishListCount
-        });
-      });
+      // category.displayCategory().then((category) => {
+      //   let userData = req.session.user;
+      //   res.render("user/proceedToCheckOutPage", {
+      //     admin: false,
+      //     user: true,
+      //     userData,
+      //     cartCount,
+      //     category,
+      //     products,
+      //     finalTotal,
+      //     wishListCount
+      //   });
+      // });
       
     }
   }

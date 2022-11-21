@@ -11,6 +11,21 @@ const adminUserPage = (req, res) => {
     });
   }
 
+  const userBlock = (req,res)=>{
+    console.log(req.body.userId);
+    console.log("entered here");
+    adminUser.blockUser(req.body.userId).then((response)=>{
+      res.json({status:true})
+    })
+  }
+
+  const userUnblock =(req,res)=>{
+    adminUser.unblockUser(req.body.userId).then((response)=>{
+      res.json({status:true})
+    })
+  }
 module.exports = {
   adminUserPage,
+  userBlock,
+  userUnblock
 };

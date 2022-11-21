@@ -58,7 +58,7 @@ const showSignUpPage = (req, res) => {
 
 const userSignUpaction = (req, res) => {
   let verified = 0;
-
+  let state = 'active'
   const { username, useremail, userpassword } = req.body;
   let mailDetails = {
     from: "athul2522001@gmail.com",
@@ -74,7 +74,7 @@ const userSignUpaction = (req, res) => {
     }
   });
   userCredentials
-    .insertUserCredentials(verified, username, useremail, userpassword)
+    .insertUserCredentials(verified, username, useremail, userpassword,state)
     .then((response) => {
       userID = response.insertedId;
       res.render("user/otpVerificationPage", { admin: false,user:false, });

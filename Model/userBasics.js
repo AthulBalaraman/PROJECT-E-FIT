@@ -3,13 +3,13 @@ const collection = require("../config/collection");
 const bcrypt = require("bcrypt");
 
 module.exports = {
-  insertUserCredentials: (verified, username, useremail, userpassword) => {
+  insertUserCredentials: (verified, username, useremail, userpassword,state) => {
     return new Promise(async (resolve, reject) => {
       userpassword = await bcrypt.hash(userpassword, 10);
       console.log(userpassword);
       db.get()
         .collection(collection.USER_CREDENTIALS)
-        .insertOne({ verified, username, useremail, userpassword })
+        .insertOne({ verified, username, useremail, userpassword,state})
         .then((data) => {
           resolve(data);
         });
@@ -25,7 +25,7 @@ module.exports = {
         .findOne({ useremail: userCheck.useremail });
 
       if (user) {
-        if (user.verified == 1) {
+        if (user.verified == 1 && user.state == 'active') {
           bcrypt
             .compare(userCheck.password, user.userpassword)
             .then((status) => {

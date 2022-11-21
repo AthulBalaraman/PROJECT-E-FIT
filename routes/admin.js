@@ -65,7 +65,8 @@ router.post('/updateProductDetails',adminSessionCheck.adminSessionChecker,upload
 //-------------------------------USER ROUTES-------------------------------------------------
 
 router.get('/adminUserPage',adminSessionCheck.adminSessionChecker,adminUser.adminUserPage)
-
+router.post('/adminUserPage/block',adminSessionCheck.adminSessionChecker,adminUser.userBlock)
+router.post('/adminUserPage/unblock',adminSessionCheck.adminSessionChecker,adminUser.userUnblock)
 
 //---------------------------------BANNER ROUTES-----------------------------------------
 
