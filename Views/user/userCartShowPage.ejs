@@ -199,14 +199,15 @@
       function proceedToCheckout(TOTAL){
         let couponCode = ''
         couponCode = document.getElementById('couponCode').value.toUpperCase()
-        console.log('proceeded to checkout');
         fetch('/userCartShowPage/proceedToCheckingOut',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify(
                 {couponCode,TOTAL})
-        }).then((response)=>{
-            location.href="/proceedToCheckOut"
+        }).then(res => res.json()).then((data)=>{
+            console.log('final total ==>>',data);
+            window.alert(data)
+            location.href="/proceedToCheckOut?finalTotal="+data
         })
 
         }
