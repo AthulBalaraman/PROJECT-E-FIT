@@ -1,5 +1,6 @@
 const { response } = require("express");
 const adminCategory = require("../Model/adminCategory");
+const { showOrderPlaced } = require("./userPlaceOrder");
 
 const adminCategoryPage = (req, res) => {
     adminCategory.displayCategory().then((category) => {
@@ -17,11 +18,27 @@ const addNewCategory = (req, res) => {
     });
   } 
 
-const deleteCategory = (req, res) => {
+const deleteCategory = async(req, res) => {
     let categoryId = req.query.id;
-    adminCategory.deleteCategory(categoryId).then((response) => {
-      res.redirect("/admin/adminCategoryPage");
-    });
+     await adminCategory.checkProducts(categoryId).then((products)=>{
+      if(products.length > 0)
+      {
+       response.status= false
+       res.json(response)
+
+      }
+      else
+      {
+        console.log('reached else');
+        adminCategory.deleteCategory(categoryId).then((response) => {
+          response.status = true 
+          // res.redirect("/admin/adminCategoryPage");
+          res.json(response)
+        });
+      }
+    })
+    
+ 
   } 
 
 module.exports = {

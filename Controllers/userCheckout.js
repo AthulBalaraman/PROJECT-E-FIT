@@ -14,7 +14,7 @@ const showCheckOutPage = async (req, res) => {
     cartCount = await cartModel.getCartCount(req.session.user._id);
     wishListCount = await wishListModel.getWishListCount(req.session.user._id)
   }
-  let total = await checkOut.getTotalAmount(req.session.user._id)
+  // let total = await checkOut.getTotalAmount(req.session.user._id)
   let finalTotal = Math.round(req.query.finalTotal)
 
   category.displayCategory().then((category) => {
@@ -37,7 +37,7 @@ const showCheckingOutPage = async(req,res)=>{
   let details = req.body
   if(details.couponCode==='')
   {
-    finalTotal = details.TOTAL  
+    finalTotal = details.TOTAL + (5/100)*details.TOTAL 
     res.json(finalTotal)
   }
   else{
@@ -56,7 +56,7 @@ const showCheckingOutPage = async(req,res)=>{
     }
     else
     {
-      finalTotal = details.TOTAL 
+      finalTotal = details.TOTAL  + (5/100)*details.TOTAL
       res.json(finalTotal)     
     }
   }

@@ -35,4 +35,16 @@ module.exports = {
         });
     });
   },
+
+  checkProducts:(categoryId)=>{
+    return new Promise(async(resolve,reject)=>{
+      console.log('this is category id',categoryId);
+      let categoryDetails = await db.get().collection(collection.CATEGORIES).findOne({ _id:ObjectId(categoryId)})
+      console.log(categoryDetails)
+      console.log('the name of the category is ===== >>>',categoryDetails.newCategoryName);
+      let products  = await db.get().collection(collection.PRODUCTS).find({categoryName:categoryDetails.newCategoryName}).toArray()
+      console.log('the products of this category is',products);
+      resolve(products)
+    })
+  }
 };

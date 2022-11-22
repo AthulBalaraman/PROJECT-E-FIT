@@ -45,7 +45,7 @@ router.get('/adminLogout',admin.adminLogout)
 
 router.get('/adminCategoryPage',adminSessionCheck.adminSessionChecker,adminCategory.adminCategoryPage)
 router.post('/addNewCategory',adminSessionCheck.adminSessionChecker,adminCategory.addNewCategory)
-router.get('/deleteCategory',adminSessionCheck.adminSessionChecker,adminCategory.deleteCategory)
+router.delete('/deleteCategory',adminSessionCheck.adminSessionChecker,adminCategory.deleteCategory)
 
 //-------------------------BRAND ROUTES----------------------------------------------
 
