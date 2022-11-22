@@ -28,7 +28,7 @@
                       <a href="/admin/showEditProductPage?id=<%= ProductDetails[i]._id %>" type="button" class="btn btn-success">EDIT</a>
                     </td>
                     <td>
-                      <a href="/admin/deleteProduct?id=<%= ProductDetails[i]._id %>" type="button" class="btn btn-danger">DELETE</a>
+                      <a href="#" type="button" class="btn btn-danger" onclick="deleteProduct('<%= ProductDetails[i]._id %>')">DELETE</a>
                     </td>
                   </tr>
                   <% } %>
@@ -52,4 +52,36 @@ sidebarBtn.onclick = function() {
 $(document).ready(function () {
     $('#adminProductTable').DataTable();
 });
+
+
+
+function deleteProduct(productId){
+  swal({
+  title: "DELETE",
+  text: "DO YOU WANT TO DELETE THIS PRODUCT",
+  icon: "warning",
+  buttons: ["CANCEL","OK"],
+}).then(val=>{
+  if(val)
+  {
+    
+    fetch('/admin/deleteProduct?id='+productId,
+    {
+      method:'delete'
+
+    }).then(
+      swal({
+        title: "SUCCESS",
+       text: "PRODUCT SUCCESSFULLY DELETED",
+       icon: "success",
+       button:"OK"
+       
+    }).then(val=>{
+      location.reload()
+    })
+    )
+  }
+})
+}
+
  </script>

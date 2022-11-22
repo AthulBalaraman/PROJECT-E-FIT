@@ -57,7 +57,7 @@ router.delete('/deleteBrand',adminSessionCheck.adminSessionChecker,adminBrand.de
 router.get('/adminProductspage',adminSessionCheck.adminSessionChecker,adminProduct.adminProductsPage)
 router.get('/addProduct',adminSessionCheck.adminSessionChecker,adminProduct.addProductPage)
 router.post('/addProductDetails',adminSessionCheck.adminSessionChecker,upload.single('productImage'),adminProduct.addProductDetails)
-router.get('/deleteProduct',adminSessionCheck.adminSessionChecker,adminProduct.deleteProduct)
+router.delete('/deleteProduct',adminSessionCheck.adminSessionChecker,adminProduct.deleteProduct)
 router.get('/showEditProductPage',adminSessionCheck.adminSessionChecker,adminProduct.updateProductDetails)
 router.post('/updateProductDetails',adminSessionCheck.adminSessionChecker,upload.single('productImage'),adminProduct.updateProductDetailsAction)
 
