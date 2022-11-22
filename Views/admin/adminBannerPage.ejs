@@ -96,6 +96,15 @@ aria-hidden="true"
 
 
   function deleteBanner(bannerId){
+    
+  swal({
+  title: "DELETE",
+  text: "DO YOU WANT TO DELETE THIS BANNER",
+  icon: "warning",
+  buttons: ["CANCEL","OK"],
+}).then(val=>{
+  if(val)
+  {
     fetch("/admin/deleteBanner",{
       method: 'DELETE',
       headers: {
@@ -104,10 +113,20 @@ aria-hidden="true"
       body:JSON.stringify({
         bannerId
       })
-    }).then(()=>{
-      window.location='/admin/adminBannerPage'
-    
+    }).then(
+      swal({
+        title: "SUCCESS",
+       text: "BANNER SUCCESSFULLY DELETED",
+       icon: "success",
+       button:"OK"
+       
+    }).then(val=>{
+      location.reload()
     })
+    )
+  }
+})
+   
   }
 
 
