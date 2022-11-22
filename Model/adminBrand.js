@@ -35,4 +35,12 @@ module.exports = {
         });
     });
   },
+  checkProducts:(brandId)=>{
+    return new Promise(async(resolve,reject)=>{
+      let brandDetails = await db.get().collection(collection.BRANDS).findOne({ _id:ObjectID(brandId)})
+      let products  = await db.get().collection(collection.PRODUCTS).find({brandName:brandDetails.newBrandName}).toArray()
+      console.log('the products of this category is',products);
+      resolve(products)
+    })
+  }
 };

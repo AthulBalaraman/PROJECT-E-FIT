@@ -55,7 +55,6 @@ aria-hidden="true"
         <tr>
           <th scope="col">SNO</th>
           <th scope="col">BRAND NAME</th>
-          <th scope="col">EDIT BRAND</th>
           <th scope="col">DELETE BRAND</th>
         </tr>
       </thead>
@@ -64,8 +63,7 @@ aria-hidden="true"
         <tr>
           <th scope="row"><%= i+1 %></th>
           <td><%= brands[i].newBrandName %></td>
-          <td><a href="" class="btn btn-warning">EDIT</a></td>
-          <td><a href="/admin/deleteBrand?id=<%= brands[i]._id %>" class="btn btn-danger">DELETE</a></td>
+          <td><a href="#" class="btn btn-danger" onclick="deleteBrand('<%= brands[i]._id %>')">DELETE</a></td>
         </tr>
         <% } %>
       </tbody>
@@ -93,4 +91,50 @@ aria-hidden="true"
   $(document).ready(function () {
     $('#data').DataTable();
 });
+
+
+
+function deleteBrand(brandId){
+  
+  swal({
+  title: "DELETE",
+  text: "DO YOU WANT TO DELETE THIS BRAND",
+  icon: "warning",
+  buttons: ["CANCEL","OK"],
+}).then(val=>{
+  if(val)
+  {
+    fetch('/admin/deleteBrand?id='+brandId,
+    {
+      method:'delete'
+
+    }).then(res=> res.json()).then(data=>{
+      console.log(data);
+      if(data.status){
+        swal({
+        title: "SUCCESS",
+       text: "BRAND SUCCESSFULLY DELETED",
+       icon: "success",
+       button:"OK"
+       
+    }).then(val=>{
+      location.reload()
+    })
+      
+      }
+      else{
+        swal({
+        title: "WARNING",
+       text: " BRAND ALREADY IN USE ",
+       icon: "warning",
+       button:"OK"
+       
+    }).then(val=>{
+      location.reload()
+    })
+      }
+    })
+  }
+})
+}
 </script>
