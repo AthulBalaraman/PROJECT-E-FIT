@@ -78,5 +78,5 @@ router.delete('/deleteBanner',adminSessionCheck.adminSessionChecker,adminBanner.
 //------------------------------------- COUPON ROUTES ------------------------------------------
 router.get('/adminCouponPage',adminSessionCheck.adminSessionChecker,adminCoupon.showCouponPage)
 router.post('/addNewCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.addCoupon)
-router.get('/deleteCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.deleteCoupon)
+router.delete('/deleteCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.deleteCoupon)
 module.exports = router    
