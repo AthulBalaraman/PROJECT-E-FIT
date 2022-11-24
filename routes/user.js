@@ -23,7 +23,7 @@ router.get('/showUserSignUpPage',userBasics.showSignUpPage)
 router.post('/userSignUpAction',userBasics.userSignUpaction)
 router.post('/checkOtp',userBasics.checkOtp)
 
-
+router.get('/shop',userSessionCheck.userSessionChecker,userShop.shopDisplay)
 router.get('/viewProductDetails',userSessionCheck.userSessionChecker,userPoductDetails.showProductDetails)
 router.get('/viewCategory',userSessionCheck.userSessionChecker,userShop.viewShop)
 

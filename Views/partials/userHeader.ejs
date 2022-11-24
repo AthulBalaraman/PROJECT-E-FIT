@@ -64,7 +64,7 @@
           <div class="col-lg-3 col-6 text-right">
               <a href="showWishListPage" class="btn border">
                   <i class="fas fa-heart text-dark"></i>
-                  <span class="badge badge-light" id="wish-list-count"><%= wishListCount %></span>
+                  <span class="badge badge-light" id="wish-listcount"><%= wishListCount %></span>
               </a>
               <a href="/showCartPage" class="btn border">
                   <i class="fas fa-shopping-cart text-primary"></i>
@@ -103,7 +103,7 @@
 
                       <!----------------------- CATEGORY DISPLAY ------------------------------>
                       <% for(var i=0;i<category.length;i++) { %>
-                      <a href="" class="nav-item nav-link"><%= category[i].newCategoryName %></a>
+                      <a href="viewCategory?id=<%= category[i]._id %>" class="nav-item nav-link"><%= category[i].newCategoryName %></a>
                       <% } %>
                   </div>
               </nav>
@@ -122,7 +122,7 @@
                   <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                       <div class="navbar-nav mr-auto py-0">
                           <a href="/" class="nav-item nav-link active">Home</a>
-                          <a href="shop.html" class="nav-item nav-link">Shop</a>
+                          <a href="/shop" class="nav-item nav-link">Shop</a>
                       </div>
                       <% if(userData) { %>  
                       <div class="navbar-nav ml-auto py-0">

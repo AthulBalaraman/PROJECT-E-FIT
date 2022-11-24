@@ -21,4 +21,11 @@ module.exports = {
       resolve(product);
     });
   },
+
+  viewShopProducts:()=>{
+    return new Promise(async(resolve,reject)=>{
+     let shopProducts = await db.get().collection(collection.PRODUCTS).find().toArray()
+     resolve(shopProducts)
+    })
+  }
 };
