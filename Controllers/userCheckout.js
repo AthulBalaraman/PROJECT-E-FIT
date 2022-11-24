@@ -33,31 +33,32 @@ const showCheckOutPage = async (req, res) => {
 };
 
 const showCheckingOutPage = async(req,res)=>{
-  let finalTotal = req.body.TOTAL//cart total
+  
+  let finalTotal = parseInt(req.body.TOTAL)//cart total
   let details = req.body
+  details.TOTAL = parseInt(details.TOTAL)
   if(details.couponCode==='')
   {
-    finalTotal = details.TOTAL + (5/100)*details.TOTAL 
+    let shippingCharge =  (5/100)*details.TOTAL
+    finalTotal = details.TOTAL + shippingCharge
     res.json(finalTotal)
   }
   else{
-    console.log('this is checkingout page req.body details',details);
     let couponDetails = await couponModel.getCouponDetails(details.couponCode)
-    console.log('this is coupon details ',couponDetails);
     if(couponDetails)
     {
       await couponModel.getDiscount(couponDetails, details.TOTAL).then((response) => {
-        console.log('########################################',response);
         finalTotal = response.discountedTotal
-        console.log('this is final total',response);
-        res.json(response.discountedTotal)
+        finalTotal = Math.round(finalTotal)
+        res.json(finalTotal)
 
       });
     }
     else
     {
-      finalTotal = details.TOTAL  + (5/100)*details.TOTAL
-      res.json(finalTotal)     
+      let shippingCharge =  (5/100)*details.TOTAL
+      finalTotal = details.TOTAL + shippingCharge
+      res.json(finalTotal) 
     }
   }
 }

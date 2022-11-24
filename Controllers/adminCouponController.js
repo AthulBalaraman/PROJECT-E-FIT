@@ -19,9 +19,7 @@ const addCoupon = (req,res)=>{
 const deleteCoupon = (req,res)=>{
   let couponId = req.query.id
 couponModel.deleteCoupon(couponId).then(()=>{
-  couponModel.displayCoupon().then((availableCoupons)=>{
-    res.render('admin/adminCouponPage',{admin:true,title:'COUPON CONTROL PAGE',availableCoupons})
-  })
+res.json()
 })
 }
 

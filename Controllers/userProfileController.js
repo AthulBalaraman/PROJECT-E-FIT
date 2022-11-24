@@ -3,18 +3,19 @@ const cartModel = require('../Model/userCart')
 const wishListModel = require('../Model/userWishListModel')
 const category = require('../Model/adminCategory')
 const { resolveContent } = require('nodemailer/lib/shared')
+const collection = require('../config/collection')
 
 
 
 const viewOrders = async(req,res)=>{
-let orders = await userProfileModel.getUserOrders(req.session.user._id)
+let orderList = await userProfileModel.getUserOrders(req.session.user._id)
 let cartCount = null;
 let wishListCount = null
 if (req.session.user) {
   cartCount = await cartModel.getCartCount(req.session.user._id);
   wishListCount = await wishListModel.getWishListCount(req.session.user._id)
 }
-console.log('this is my orders',orders);
+console.log('this is my orders',orderList);
 category.displayCategory().then((category) => {
   let userData = req.session.user;
   res.render("user/viewOrdersPage", {
@@ -24,7 +25,7 @@ category.displayCategory().then((category) => {
     cartCount,
     category,
     wishListCount,
-    orders
+    orderList
   });
 });
 }
@@ -145,7 +146,7 @@ const updatePassword = async(req,res)=>{
   category.displayCategory().then(async(category) => {
     let userData = req.session.user;
     let userDetails = await userProfileModel.findUser(userData._id)
-    userProfileModel.updatePassword(req.body,userData).then(()=>{
+    userProfileModel.updatePassword(req.body.password,userData).then(()=>{
       res.render("user/userProfilePage", {
         admin:false,
         user:true,
@@ -157,7 +158,40 @@ const updatePassword = async(req,res)=>{
       });
     }); 
     })
-     
+}
+
+const viewOrderProducts = async(req,res)=>{
+  let cartCount = null;
+  let wishListCount = null
+  if (req.session.user) {
+    cartCount = await cartModel.getCartCount(req.session.user._id);
+    wishListCount = await wishListModel.getWishListCount(req.session.user._id)
+  }
+  category.displayCategory().then(async(category) => {
+    let userData = req.session.user;
+    let userDetails = await userProfileModel.findUser(userData._id)
+    let orderId = req.query.id
+    console.log('this is user order id ',orderId);
+    let products = await userProfileModel.getOrderProductDetails(orderId)
+    let orderProducts = products?products:''
+    
+    console.log('this is products of order ====>>>>>>>',products);
+
+    res.render("user/userViewOrderProducts", {
+      admin:false,
+      user:true,
+      userData,
+      cartCount,
+      category,
+      wishListCount,
+      userDetails,
+      products
+    });
+    // let oneProduct = await userProfileModel.getOneProduct(orderId)
+    // console.log('this is one products ',oneProduct);
+
+
+    })
 }
 module.exports ={
   viewOrders,
@@ -165,6 +199,7 @@ module.exports ={
   editProfile,
   editProfileDetails,
   showPasswordChangePage,
-  updatePassword
+  updatePassword,
+  viewOrderProducts
   
 }

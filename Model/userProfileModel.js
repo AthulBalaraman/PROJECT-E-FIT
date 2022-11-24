@@ -39,46 +39,84 @@ module.exports = {
       })
     },
 
-    updatePassword:(body,user)=>{
+    updatePassword:(newPassword,user)=>{
+      console.log("user",user);
       return new Promise(async(resolve,reject)=>{
-          
-        body.currentPassword = await bcrypt.hash(body.currentPassword,10)
-        body.password = await bcrypt.hash(body.password,10)
-        // console.log(body);
-        // console.log(user);
-        // console.log(user.userpassword);
-        // let userData = await db.get().collection(collection.USER_CREDENTIALS).findOne({_id:ObjectID(user._id)})
-        // console.log(userData);
-        // console.log(body.currentPassword);
-       // TRIED compareSync 
-         await bcrypt.compare("userpassword","userpassword").then((status)=>{
-          console.log(status);
+        newPassword = await bcrypt.hash(newPassword,10)
 
-          if(status)
-          {
-            console.log(' correct password');
-            db.get().collection(collection.USER_CREDENTIALS).updateOne({_id:ObjectID(user)},
+            db.get().collection(collection.USER_CREDENTIALS).updateOne({_id:ObjectID(user._id)},
             {
               $set:{
   
-                userpassword:body.password
+                userpassword:newPassword
               }
             }
             )
             resolve()
-          }
-         else
-         {
-          console.log('eneter correct password');
-         }
-         
-        })
-     
+          })
+        },
+
+        getOrderProductDetails:(orderId)=>{
+          return new Promise(async(resolve,reject)=>{
+            let orders = await db.get().collection(collection.ORDER).aggregate([
+              {
+                $match:{_id:ObjectID(orderId)}
+              },
+              {
+                $unwind:'$products'
+              },
+              {
+                $lookup:{
+                  from:collection.PRODUCTS,
+                  localField:'products.item',
+                  foreignField:'_id',
+                  as:'orderProducts'
+                }
+              },
+              {
+                $project:{
+                  _id:0,
+                  orderProducts:1
+                }
+              }
+            ]).toArray()
+            console.log('this is orders',orders);
+            resolve(orders)
+          })
+        },
+
+
+        getOneProduct :(orderId)=>{
+        
+          return new Promise(async(resolve,reject)=>{
+              let oneProduct = await db.get().collection(collection.ORDER).aggregate([
+                  {
+                      $match:{_id:ObjectID(orderId)}
+                  },
+                  {
+                      $unwind:'$products'
+                  },
+                  {
+                      $lookup:{
+                          from:collection.PRODUCTS,
+                          localField:'products.item',
+                          foreignField:'_id',
+                          as:'orderproducts'
+                      }
+                  },
+                  {
+                      $project:{
+                          orderproducts:1
+                      }
+                  }
+              ]).toArray()
+              console.log("length",oneProduct.length);
+              resolve(oneProduct)
+              
+              
+          })
+      }
+        }
        
-        })
-       
-      }
-    }
-  
   
 

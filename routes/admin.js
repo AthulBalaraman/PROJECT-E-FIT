@@ -7,6 +7,7 @@ const adminProduct = require('../Controllers/adminProductController')
 const adminUser = require('../Controllers/adminUserController')
 const adminBanner = require('../Controllers/adminBannerController')
 const adminCoupon = require('../Controllers/adminCouponController')
+const adminOrder =  require('../Controllers/adminOrderController')
 
 const multer = require('multer')
 const adminSessionCheck = require('../middlewares/sessionMiddleware')
@@ -79,4 +80,8 @@ router.delete('/deleteBanner',adminSessionCheck.adminSessionChecker,adminBanner.
 router.get('/adminCouponPage',adminSessionCheck.adminSessionChecker,adminCoupon.showCouponPage)
 router.post('/addNewCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.addCoupon)
 router.delete('/deleteCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.deleteCoupon)
+
+//--------------------------------------- ORDER ROUTES -----------------------------------------
+router.get('/adminOrderPage',adminSessionCheck.adminSessionChecker,adminOrder.showOrderPage)
+
 module.exports = router    

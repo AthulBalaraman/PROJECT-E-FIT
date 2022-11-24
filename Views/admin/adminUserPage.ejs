@@ -1,9 +1,7 @@
 
           <!-- USER TABLE  -->
-      <section class="home-section mt-5">
-        <div class="container d-flex justify-content-end">
-          <a href="" class="btn btn-danger mb-2">VIEW BLOCKED USERS</a>
-        </div>
+      <section class="home-section mt-3">
+  
         <div class="container">
           <table id="userPage" class="table table-secondary table-hover">
             <thead>
@@ -17,11 +15,11 @@
             </thead>
             <tbody>
 
+              <% for(var i=0;i<User_Details.length;i++) { %>
               <tr>
-                <% for(var i=0;i<User_Details.length;i++) { %>
                 <th scope="row"><%= i+1 %></th>
                 <td><%= User_Details[i].username %></td>
-                <td><%= User_Details[i].useremail %></td>4
+                <td><%= User_Details[i].useremail %></td>
                 <td>
                 <%if(User_Details[i].state == 'active') {%>
                   <button onclick="userBlock('<%= User_Details[i]._id %>')" class="btn btn-danger">BLOCK</button>

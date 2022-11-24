@@ -1,0 +1,102 @@
+
+
+
+
+<section class="home-section mt-2 ">
+  
+  <div class="container">
+    <table id="Category" class="table  table-hover">
+      <thead >
+        <tr class="text-danger">
+          <th scope="col">SNO</th>
+          <th scope="col">ORDER ID</th>
+          <th scope="col">ORDER DATE</th>
+          <th scope="col">CUSTOMER ADDRESS</th>
+          <th scope="col">ORDER STATUS</th>
+          <th scope="col">PAYMENT METHOD</th>
+          <th scope="col">AMOUNT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0;i< orderList.length;i++){ %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= orderList[i]._id %></td> 
+          <td><%= orderList[i].date.toLocaleDateString() %></td>
+          <td><%= orderList[i].deliveryDetails.address %></td>
+          <td><%= orderList[i].status %></td>
+          <td><%= orderList[i].paymentMethod %></td>
+          <td>₹ <%= orderList[i].deliveryDetails.totalAmout %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".sidebarBtn");
+  sidebarBtn.onclick = function () {
+    sidebar.classList.toggle("active");
+    if (sidebar.classList.contains("active")) {
+      sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+    } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+  };
+
+  var myModal = document.getElementById("myModal");
+  var myInput = document.getElementById("myInput");
+
+  myModal.addEventListener("shown.bs.modal", function () {
+    myInput.focus();
+  });
+
+
+  $(document).ready(function () {
+    $('#Category').DataTable();
+});
+
+function deleteCategory(categoryId){
+  
+  swal({
+  title: "DELETE",
+  text: "DO YOU WANT TO DELETE THIS CATEGORY",
+  icon: "warning",
+  buttons: ["CANCEL","OK"],
+}).then(val=>{
+  if(val)
+  {
+    fetch('/admin/deleteCategory?id='+categoryId,
+    {
+      method:'delete'
+
+    }).then(res=> res.json()).then(data=>{
+      console.log(data);
+      if(data.status){
+        swal({
+        title: "SUCCESS",
+       text: "CATEGORY SUCCESSFULLY DELETED",
+       icon: "success",
+       button:"OK"
+       
+    }).then(val=>{
+      location.reload()
+    })
+      
+      }
+      else{
+        swal({
+        title: "WARNING",
+       text: " CATEGORY ALREADY IN USE ",
+       icon: "warning",
+       button:"OK"
+       
+    }).then(val=>{
+      location.reload()
+    })
+      }
+    })
+  }
+})
+}
+</script>

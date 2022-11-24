@@ -44,7 +44,7 @@ router.post('/verifyPayment',userSessionCheck.userSessionChecker,placeOrderContr
 
 
 
-router.get('/viewOrders',userSessionCheck.userSessionChecker,userProfileController.viewOrders)
+
 
 //------------------------------------ WISHLIST ROUTES -------------------------------------------
 router.get('/showWishListPage',userSessionCheck.userSessionChecker,wishListController.showWishListPage)
@@ -56,8 +56,10 @@ router.delete('/removeWishListProduct',userSessionCheck.userSessionChecker,wishL
 router.get('/userProfilePage',userSessionCheck.userSessionChecker,userProfileController.showUserProfile)
 router.get('/editProfile',userSessionCheck.userSessionChecker,userProfileController.editProfile)
 router.post('/editedUserProfile',userSessionCheck.userSessionChecker,userProfileController.editProfileDetails)
-
+router.get('/viewOrders',userSessionCheck.userSessionChecker,userProfileController.viewOrders)
+router.get('/viewOrderProducts',userSessionCheck.userSessionChecker,userProfileController.viewOrderProducts)
 
 router.get('/changePassword',userSessionCheck.userSessionChecker,userProfileController.showPasswordChangePage)
 router.post('/updatePassword',userSessionCheck.userSessionChecker,userProfileController.updatePassword)
+
 module.exports = router

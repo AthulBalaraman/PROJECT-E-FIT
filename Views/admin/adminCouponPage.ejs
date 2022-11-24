@@ -118,7 +118,7 @@ aria-hidden="true"
     {
       method:'delete'
 
-    }).then(
+    }).then(res=>res.json).then(
       swal({
         title: "SUCCESS",
        text: "COUPON SUCCESSFULLY DELETED",
@@ -126,7 +126,7 @@ aria-hidden="true"
        button:"OK"
        
     }).then(val=>{
-      location.reload()
+      location.href = '/admin/adminCouponPage'
     })
     )
   }
