@@ -8,6 +8,7 @@ const adminUser = require('../Controllers/adminUserController')
 const adminBanner = require('../Controllers/adminBannerController')
 const adminCoupon = require('../Controllers/adminCouponController')
 const adminOrder =  require('../Controllers/adminOrderController')
+const adminChart = require('../Controllers/adminChartController')
 
 const multer = require('multer')
 const adminSessionCheck = require('../middlewares/sessionMiddleware')
@@ -83,5 +84,8 @@ router.delete('/deleteCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.
 
 //--------------------------------------- ORDER ROUTES -----------------------------------------
 router.get('/adminOrderPage',adminSessionCheck.adminSessionChecker,adminOrder.showOrderPage)
+router.get('/adminviewOrderProducts',adminSessionCheck.adminSessionChecker,adminOrder.viewOrderProducts)
 
+//-------------------------------------- CHART ROUTES -------------------------------------------
+router.get('/chartContent',adminSessionCheck.adminSessionChecker,adminChart.chartStatusCount)
 module.exports = router    

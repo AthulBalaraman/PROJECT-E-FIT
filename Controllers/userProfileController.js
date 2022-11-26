@@ -15,7 +15,6 @@ if (req.session.user) {
   cartCount = await cartModel.getCartCount(req.session.user._id);
   wishListCount = await wishListModel.getWishListCount(req.session.user._id)
 }
-console.log('this is my orders',orderList);
 category.displayCategory().then((category) => {
   let userData = req.session.user;
   res.render("user/viewOrdersPage", {
@@ -171,7 +170,6 @@ const viewOrderProducts = async(req,res)=>{
     let userData = req.session.user;
     let userDetails = await userProfileModel.findUser(userData._id)
     let orderId = req.query.id
-    console.log('this is user order id ',orderId);
     let products = await userProfileModel.getOrderProductDetails(orderId)
     let orderProducts = products?products:''
     

@@ -15,13 +15,14 @@
           <th scope="col">ORDER STATUS</th>
           <th scope="col">PAYMENT METHOD</th>
           <th scope="col">AMOUNT</th>
+          
         </tr>
       </thead>
       <tbody>
         <% for(var i=0;i< orderList.length;i++){ %>
         <tr>
           <th scope="row"><%= i+1 %></th>
-          <td><%= orderList[i]._id %></td> 
+          <td><a href="/admin/adminviewOrderProducts?id=<%= orderList[i]._id %>"><%= orderList[i]._id %></a></td> 
           <td><%= orderList[i].date.toLocaleDateString() %></td>
           <td><%= orderList[i].deliveryDetails.address %></td>
           <td><%= orderList[i].status %></td>

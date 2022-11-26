@@ -7,5 +7,12 @@ module.exports ={
       let orderList  = db.get().collection(collection.ORDER).find().toArray()
       resolve(orderList)
     })
+  },
+  checkPlacedOrders:()=>{
+    return new Promise(async(resolve,reject)=>{
+      let orderplaced = await db.get().collection(collection.ORDER).find({status:'Placed'}).toArray()
+      let orderPlacedLength  = orderplaced.length
+      resolve(orderPlacedLength)
+    })
   }
 }

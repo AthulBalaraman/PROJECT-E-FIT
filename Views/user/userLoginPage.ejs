@@ -11,6 +11,9 @@
           class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5"
         >
          <div class="m-5 p-5">
+          <% if(locals.error) { %>
+            <div><span class="text-danger"><%= error %></span></div>
+            <% } %>
           <form style="width: 23rem" onsubmit="return uservalidation()" method="POST" action="/userLoginAction">
             <!-- <h3 class="fw-normal mb-5 pb-5" style="letter-spacing: 1px">
               Log in

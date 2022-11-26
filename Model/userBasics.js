@@ -34,14 +34,17 @@ module.exports = {
                 response.user = user
                 resolve(response);
               } else {
-                resolve({ status: false });
+                response.invalid = true
+                resolve(response);
               }
             });
         } else {
-          resolve({ status: false });
+          response.notVerified = true
+          resolve(response);
         }
       } else {
-        resolve({ status: false });
+        response.noUser = true
+        resolve(response);
       }
     });
   },

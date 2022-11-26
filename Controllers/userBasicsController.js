@@ -85,11 +85,18 @@ const userLoginAction = (req, res) => {
   userCredentials.checkUserLogin(req.body).then((response) => {
     if (response.status) {
       req.session.loggedIn = true
-      req.session.user = response.user //added this
-      res.redirect('/') // added this check
-    } else {
-     res.redirect('/showUserLoginPage')
+      req.session.user = response.user 
+      res.redirect('/') 
     }
+     else if(response.noUser) {
+     res.render('user/userLoginPage', { admin: false,user:false, error:"*User not found"})
+    }
+    else if(response.invalid) {
+      res.render('user/userLoginPage', { admin: false,user:false, error:"*Invalid  username or password"})
+     }
+     else if(response.notVerified) {
+      res.render('user/userLoginPage', { admin: false,user:false, error:"*user not verified"})
+     }
   });
 };
 
