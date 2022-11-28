@@ -1,4 +1,3 @@
-const charModel = require('../Model/adminChart')
 const userModel = require('../Model/adminUser')
 const orderModel = require('../Model/adminOrderModel')
 

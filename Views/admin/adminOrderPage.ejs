@@ -11,7 +11,6 @@
           <th scope="col">SNO</th>
           <th scope="col">ORDER ID</th>
           <th scope="col">ORDER DATE</th>
-          <th scope="col">CUSTOMER ADDRESS</th>
           <th scope="col">ORDER STATUS</th>
           <th scope="col">PAYMENT METHOD</th>
           <th scope="col">AMOUNT</th>
@@ -24,7 +23,6 @@
           <th scope="row"><%= i+1 %></th>
           <td><a href="/admin/adminviewOrderProducts?id=<%= orderList[i]._id %>"><%= orderList[i]._id %></a></td> 
           <td><%= orderList[i].date.toLocaleDateString() %></td>
-          <td><%= orderList[i].deliveryDetails.address %></td>
           <td><%= orderList[i].status %></td>
           <td><%= orderList[i].paymentMethod %></td>
           <td>₹ <%= orderList[i].deliveryDetails.totalAmout %></td>

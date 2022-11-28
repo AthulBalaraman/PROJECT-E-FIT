@@ -19,7 +19,7 @@
         <td><%=  orderList[i].date.toLocaleDateString() %></td>
         <td><%= orderList[i].deliveryDetails.address %></td>
         <td>₹ <%= orderList[i].deliveryDetails.totalAmout %></td>
-        <td></td>
+        <td><%= orderList[i].status %></td>
         <td><a href="/viewOrderProducts?id=<%= orderList[i]._id %>" class="btn btn-secondary btn-sm">VIEW PRODUCTS</a></td>
       </tr>
       <% }%>

@@ -15,7 +15,7 @@ const showCartPage = async (req,res)=>{
     total = await checkOut.getTotalAmount(req.session.user._id)
   }
 
-  let TOTAL = total[0].total
+  let TOTAL = total[0]?total[0].total:0
   if(req.session.user){
     cartCount = await cartModel.getCartCount(req.session.user._id)
     wishListCount = await wishListModel.getWishListCount(req.session.user._id)
@@ -46,7 +46,7 @@ const addToCart = (req,res)=>{
 const changeProductQuantity = (req,res,next)=>{
 
   cartModel.changeProductQuantity(req.body).then(async(response)=>{
-    let total = await checkOut.getTotalAmount(req.body.user)
+    total = await checkOut.getTotalAmount(req.session.user._id)
     
     response.total = total
      res.json(response)

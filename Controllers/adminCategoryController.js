@@ -25,7 +25,6 @@ const deleteCategory = async (req, res) => {
       response.status = false;
       res.json(response);
     } else {
-      console.log("reached else");
       adminCategory.deleteCategory(categoryId).then((response) => {
         response.status = true;
         // res.redirect("/admin/adminCategoryPage");

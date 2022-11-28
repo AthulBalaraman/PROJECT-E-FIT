@@ -13,15 +13,25 @@ const showOrderPage = (req, res) => {
 
 const viewOrderProducts = async (req, res) => {
   let orderId = req.query.id
+  console.log('sdfafsd',orderId);
   let products = await userProfileModel.getOrderProductDetails(orderId)
-      
-  console.log('this is products of order ====>>>>>>>',products);
-  res.render("admin/adminViewOrderProductsPage",{admin:true,title:"VIEW ORDER PRODUCTS",products})
+  
+
+  res.render("admin/adminViewOrderProductsPage",{admin:true,title:"VIEW ORDER PRODUCTS",products,orderId})
 
 
 };
 
+const updateOrderStatus = async(req,res)=>{
+  let orderId = req.body.orderId
+  let status = req.body.status
+  await adminOrderModel.updateOrderStatus(orderId,status).then(()=>{
+    res.json()
+  })
+}
+
 module.exports = {
   showOrderPage,
   viewOrderProducts,
+  updateOrderStatus
 };

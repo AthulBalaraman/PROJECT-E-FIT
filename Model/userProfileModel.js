@@ -74,9 +74,21 @@ module.exports = {
                 }
               },
               {
+                $lookup:{
+                  from:collection.USER_CREDENTIALS,
+                  localField:'userId',
+                  foreignField:'_id',
+                  as:'user'
+                }
+              },
+              {
                 $project:{
                   _id:0,
-                  orderProducts:1
+                  deliveryDetails:1,
+                  orderProducts:1,
+                  user:1,
+                  date:1,
+                  status:1
                 }
               }
             ]).toArray()

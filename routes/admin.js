@@ -85,6 +85,7 @@ router.delete('/deleteCoupon',adminSessionCheck.adminSessionChecker,adminCoupon.
 //--------------------------------------- ORDER ROUTES -----------------------------------------
 router.get('/adminOrderPage',adminSessionCheck.adminSessionChecker,adminOrder.showOrderPage)
 router.get('/adminviewOrderProducts',adminSessionCheck.adminSessionChecker,adminOrder.viewOrderProducts)
+router.post('/updateOrderStatus',adminSessionCheck.adminSessionChecker,adminOrder.updateOrderStatus)
 
 //-------------------------------------- CHART ROUTES -------------------------------------------
 router.get('/chartContent',adminSessionCheck.adminSessionChecker,adminChart.chartStatusCount)
