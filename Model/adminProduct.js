@@ -24,7 +24,6 @@ module.exports = {
         .collection(collection.PRODUCTS)
         .find()
         .toArray();
-      console.log(ProductDetails);
       resolve(ProductDetails);
     });
   },

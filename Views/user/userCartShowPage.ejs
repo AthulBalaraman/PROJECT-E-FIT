@@ -23,7 +23,7 @@
                                 <tr>
                                    
                                     <td class="align-middle"><%= products[i].productDetails.productName%></td>
-                                    <td class="align-middle"><img src="/images/<%= products[i].productDetails.picture %>" alt="" style="width: 50px;"></td>
+                                    <td class="align-middle"><img src="<%= products[i].productDetails.picture %>" alt="" style="width: 50px;"></td>
                                     <td class="align-middle">₹<%= products[i].productDetails.sellingPrice %></td>
                                   
                                     <td class="align-middle">
@@ -206,6 +206,7 @@
       function proceedToCheckout(TOTAL){
         let couponCode = ''
         couponCode = document.getElementById('couponCode').value.toUpperCase()
+
         fetch('/userCartShowPage/proceedToCheckingOut',{
             method:'post',
             headers:{'Content-Type':'application/json'},

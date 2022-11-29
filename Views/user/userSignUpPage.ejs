@@ -88,11 +88,11 @@
     let password = document.getElementById("userpassword").value.trim();
     let email = document.getElementById("useremail").value.trim()
     let confirm_password = document.getElementById("userconfirmpassword").value.trim()
- 
     var flag = 0;
+
     if(email == ""){
       document.getElementById("useremailerror").innerHTML =
-        "Email Require";
+        "Email Required";
         flag=1
     }  
     else{
@@ -111,6 +111,12 @@
       document.getElementById("userpassworderror").innerHTML = "invalid password";
         flag = 1
     }
+    else if(password.length<8)
+    {
+      document.getElementById("userpassworderror").innerHTML = "password require minimum 8 characters";
+        flag = 1
+    }
+
     else
     {
       document.getElementById("userpassworderror").innerHTML = "";

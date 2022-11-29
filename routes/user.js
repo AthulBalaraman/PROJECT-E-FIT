@@ -35,8 +35,8 @@ router.post('/changeProductQuantity',cartController.changeProductQuantity)
 router.delete('/removeCartProduct',userSessionCheck.userSessionChecker,cartController.removeCartProduct)
 router.post('/userCartShowPage/applyCoupon',userSessionCheck.userSessionChecker,couponController.applyCoupon)
 
-router.get('/proceedToCheckOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showCheckOutPage)
 router.post('/userCartShowPage/proceedToCheckingOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showCheckingOutPage)
+router.get('/proceedToCheckOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showCheckOutPage)
 
 router.post('/placeOrder',userSessionCheck.userSessionChecker,placeOrderController.placeOrder)
 router.get('/orderPlacedPage',userSessionCheck.userSessionChecker,placeOrderController.showOrderPlaced)

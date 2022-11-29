@@ -12,9 +12,8 @@ const showBannerPage = (req, res) => {
 
 const addBanner = (req, res) => {
   const { bannerName, bannerOffer } = req.body;
-  console.log(req.file);
   bannerModel
-    .inserBanner({ bannerImage: req.file.filename, bannerName, bannerOffer })
+    .inserBanner({ bannerImage: req.file.path, bannerName, bannerOffer })
     .then((response) => {
       res.redirect("/admin/adminBannerPage");
     });

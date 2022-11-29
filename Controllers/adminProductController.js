@@ -27,7 +27,7 @@ const addProductPage = (req, res) => {
   }
 
 const addProductDetails = (req, res) => {
- 
+
     const {
       productName,
       actualPrice,
@@ -42,7 +42,7 @@ const addProductDetails = (req, res) => {
     } = req.body;
     adminProduct
       .insertProduct({
-        picture: req.file.filename,
+        picture: req.file.path,
         productName,
         actualPrice,
         sellingPrice,
@@ -84,10 +84,10 @@ const updateProductDetails = async (req, res) => {
   } 
 
 const updateProductDetailsAction = (req, res) => {
-
+  console.log("hkhjk",req.file);
     let id = req.body.id;
     let newProductData = req.body;
-    let newImageId = req.file.filename;
+    let newImageId = req.file.path;
     adminProduct
       .updateProductDetails(id, newProductData, newImageId)
       .then(() => {

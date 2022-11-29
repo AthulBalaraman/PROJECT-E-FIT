@@ -37,8 +37,6 @@ aria-hidden="true"
     <div class="modal-body">
       <label for="newBannerName" class="text-primary">Banner Name : </label>
       <input type="text" name="bannerName" id="bannerName"><br><br>
-      <label for="newBannerOffer" class="text-primary">Banner offer : </label>
-      <input type="number" name="bannerOffer" id="bannerOffer"><br><br>
       <label for="newBannerImage" class="text-primary">ADD BANNER IMAGE</label>
       <input type="file" name="bannerImage" id="bannerImage"><br>
     </div>
@@ -68,7 +66,7 @@ aria-hidden="true"
         <tr>
           <th scope="row"><%= i+1 %></th>
           <td><%= banners[i].bannerName %></td>
-          <td><img src="/images/<%= banners[i].bannerImage %>" alt="banner image" style="width:6em ; height:5em"></td>
+          <td><img src="<%= banners[i].bannerImage %>" alt="banner image" style="width:6em ; height:5em"></td>
           <td><a class="btn btn-danger" onclick="deleteBanner('<%= banners[i]._id %>')">DELETE</a></td>
         </tr>
      <% } %>

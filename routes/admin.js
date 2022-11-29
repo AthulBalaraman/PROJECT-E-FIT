@@ -12,30 +12,34 @@ const adminChart = require('../Controllers/adminChartController')
 
 const multer = require('multer')
 const adminSessionCheck = require('../middlewares/sessionMiddleware')
+const {storage} = require('../cloudinary/cloudinary')
+const upload = multer({storage})
 
-const storage = multer.diskStorage({
-  destination: './public/images',
-  filename:(req,file,cb)=>{
-    cb(null,Date.now()+file.originalname)
-  }
-})
+// const storage = multer.diskStorage({
+//   destination: './public/images',
+//   filename:(req,file,cb)=>{
+//     cb(null,Date.now()+file.originalname)
+//   }
+// })
 
-const upload = multer({
-  storage: storage,
-  fileFilter:(req,file,cb)=>{
-    if(
-      file.mimetype == 'image/jpeg'|| 
-      file.mimetype == 'image/jpg'||
-      file.mimetype == 'image/png'||
-      file.mimetype == 'image/webp'
-    ){
-      cb(null,true)
-    }else{
-      cb(null,false)
-      cb(new Error('only jpeg,jpg files'))
-    }
-  }
-})
+// const upload = multer({
+//   storage: storage,
+//   fileFilter:(req,file,cb)=>{
+//     if(
+//       file.mimetype == 'image/jpeg'|| 
+//       file.mimetype == 'image/jpg'||
+//       file.mimetype == 'image/png'||
+//       file.mimetype == 'image/webp'
+//     ){
+//       cb(null,true)
+//     }else{
+//       cb(null,false)
+//       cb(new Error('only jpeg,jpg files'))
+//     }
+//   }
+// })
+
+
 
 router.get('/',adminSessionCheck.adminSessionChecker,admin.adminLoginPage)
 router.post('/adminloginaction',admin.adminLoginAction)
