@@ -1,5 +1,7 @@
      <section class="home-section">
+ 
     <div class="home-content">
+
       <div class="overview-boxes">
         <div class="box">
           <div class="right-side">
@@ -25,7 +27,11 @@
       <div style="width:40%;margin-top:5%;margin-left:30%;">
         <canvas style="width:100%; " id="myChart"></canvas>
       </div>
+      <div class="home-content">
+       
       </div>
+      </div>
+
   </section>
 
   <script>
@@ -50,11 +56,11 @@ window.addEventListener('load',()=>{
     new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ['User', 'Placed Order'],
+        labels: ['USER', 'PLACED ORDERS','DELIVERED ORDERS','SHIPPED ORDERS','TOTAL ORDERS'],
         datasets: [{
           label: '# of Votes',
-          data: [data.userlength, data.placedOrderLength],
-          borderWidth: 1
+          data: [data.userlength, data.chartDetails.orderPlacedLength, data.chartDetails.deliveredOrderLength,data.chartDetails.shippedOrderLength,data.chartDetails.totalOrdersLength],
+          borderWidth:5
         }]
        },
       options: {
@@ -65,6 +71,8 @@ window.addEventListener('load',()=>{
             console.log(err.message);
         })
   })
+
+
 
 
  </script>

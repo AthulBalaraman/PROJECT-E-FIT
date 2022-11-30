@@ -10,6 +10,7 @@ const adminCoupon = require('../Controllers/adminCouponController')
 const adminOrder =  require('../Controllers/adminOrderController')
 const adminChart = require('../Controllers/adminChartController')
 
+
 const multer = require('multer')
 const adminSessionCheck = require('../middlewares/sessionMiddleware')
 const {storage} = require('../cloudinary/cloudinary')
@@ -93,4 +94,6 @@ router.post('/updateOrderStatus',adminSessionCheck.adminSessionChecker,adminOrde
 
 //-------------------------------------- CHART ROUTES -------------------------------------------
 router.get('/chartContent',adminSessionCheck.adminSessionChecker,adminChart.chartStatusCount)
+
+
 module.exports = router    

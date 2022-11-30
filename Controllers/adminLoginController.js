@@ -1,5 +1,6 @@
 const adminLogin = require("../Model/adminLogin");
 
+
 const adminLoginPage = (req, res) => {
 
     res.render("admin/adminHome", { admin: true, title: "ADMIN HOME PAGE" });
@@ -28,6 +29,8 @@ const adminLogout = (req, res) => {
     else res.redirect("/admin");
   });
 };
+
+
 
 module.exports = {
   adminLoginPage,

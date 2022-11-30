@@ -3,7 +3,7 @@
 
 
 <section class="home-section mt-2 ">
-  
+  <button class="btn btn-primary" onclick="generatePDF()">Download to PDF</button>
   <div class="container">
     <table id="Category" class="table  table-hover">
       <thead >
@@ -98,4 +98,19 @@ function deleteCategory(categoryId){
   }
 })
 }
+
+
+  // File Exporting
+  function generatePDF() {
+        const element = document.getElementById('Category');
+        var opt = {
+            margin: 1,
+            filename: 'orderReportPdf_example.pdf',
+            image: { type: 'png', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+        };
+        // Choose the element that our invoice is rendered in.
+        html2pdf().set(opt).from(element).save();
+    }
 </script>
