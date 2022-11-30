@@ -7,14 +7,14 @@ const userFrontDisplay = require("../Model/userFrontDIsplay");
 const bannerDisplay = require("../Model/adminBanner");
 const cartModel = require('../Model/userCart')
 const wishListModel = require('../Model/userWishListModel')
-
+require('dotenv').config()
 
 
 let mailTransporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "athul2522001@gmail.com",
-    pass: "myhmxppxxvoixqtl",
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
   },
 });
 
@@ -31,9 +31,6 @@ const showLandingPage = async(req, res) => {
     categoryDisplay.displayCategory().then((category) => {
       bannerDisplay.showBanner().then((banner) => {
         let userData = req.session.user
-
-        
-        console.log('user data ================= ',userData)
         res.render("user/userHomePage", {
           admin: false, user:true,
           productDetails,
@@ -61,7 +58,7 @@ const userSignUpaction = (req, res) => {
   let state = 'active'
   const { username, useremail, userpassword } = req.body;
   let mailDetails = {
-    from: "athul2522001@gmail.com",
+    from: process.env.EMAIL,
     to: useremail,
     subject: "EFIT REGISTRATION",
     html: `<p>YOUR OTP FOR REGISTERING IN E-FIT IS ${OTP}</p>`,
@@ -101,8 +98,6 @@ const userLoginAction = (req, res) => {
 };
 
 const checkOtp = async(req, res) => {
-  console.log(OTP);
-
   let cartCount = null 
   let wishListCount = null
 

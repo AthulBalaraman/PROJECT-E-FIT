@@ -327,7 +327,7 @@
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">₹<%= finalTotal %></h5>
+                            <h5 class="font-weight-bold">₹<span id="final_total"><%= finalTotal %></span></h5>
                         </div>
                     </div>
                 </div>
@@ -357,6 +357,7 @@
             </div>
         </div>
     </form>
+    
     </div>
     <!-- Checkout End -->
 
@@ -383,9 +384,11 @@
 
     <script>
         $("#placeOrderForm").submit((e)=>{
+                let finalTotal = document.getElementById('final_total').innerHTML
+                
             e.preventDefault()
             $.ajax({
-                url:'/placeOrder',
+                url:'/placeOrder?finalTotal='+finalTotal,
                 method:'post',
                 data:$('#placeOrderForm').serialize(),
                 success:(response)=>{
@@ -404,17 +407,22 @@
 
         function razorpayPayment(order){
             var options = {
-                    "key": "rzp_test_ZlCC11J6GndceG", // Enter the Key ID generated from the Dashboard
+                    "key": 'rzp_test_ZlCC11J6GndceG', // Enter the Key ID generated from the Dashboard
                     "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                     "currency": "INR",
                     "name": "E FIT",
                     "description": "Test Transaction",
                      "image": "https://example.com/your_logo",
                      "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
                     "handler":function(response){
                         verifyPayment(response,order)
                     },
+                    "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+                    "prefill": {
+                        "name": "Athul Balaraman",
+                        "email": "gaurav.kumar@example.com",
+                        "contact": "9999999999"
+                     },
                     "notes": {
                              "address": "Razorpay Corporate Office"
                               },

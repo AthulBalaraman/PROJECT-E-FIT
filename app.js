@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const port = 5000
 const adminRouter = require('./routes/admin')
 const userRouter = require('./routes/user')
 const path = require('path')
@@ -9,6 +8,8 @@ const db = require('./config/connection')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const MongoDBSession = require('connect-mongodb-session')(session)
+require('dotenv').config()
+
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(expressLayouts)
@@ -24,7 +25,7 @@ const store = new MongoDBSession({
 })
 
 app.use(session({
-  secret:"1234",
+  secret:process.env.SESSION_SECRET_KEY,
   saveUninitialized:true,
   cookie:{maxAge:3000000},
   resave:false,
@@ -52,6 +53,6 @@ db.connect((err)=>{
 app.use('/',userRouter)
 app.use('/admin',adminRouter)
 
-app.listen(port,()=>{
+app.listen(process.env.PORT,()=>{
   console.log('server started')
 })

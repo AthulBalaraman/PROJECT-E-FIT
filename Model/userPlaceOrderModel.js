@@ -3,15 +3,15 @@ const collection = require("../config/collection");
 const { ObjectID } = require("bson");
 const { response } = require("express");
 const Razorpay = require("razorpay");
+require('dotenv').config()
 
 var instance = new Razorpay({
-  key_id: "rzp_test_ZlCC11J6GndceG",
-  key_secret: "Q24tTFMKWdtqDpT5xzHxjbeH",
+  key_id:process.env.RAZORPAY_KEY_ID,
+  key_secret:process.env.RAZORPAY_KEY_SECRET,
 });
 module.exports = {
   placeOrder: (order, products, total) => {
     return new Promise((resolve, reject) => {
-      console.log(order, products, total);
       let status =
         order.payment_method === "cash_on_delivery" ? "placed" : "pending";
       let orderObj = {
@@ -25,7 +25,7 @@ module.exports = {
           city: order.city,
           state: order.state,
           pinCode: order.pinCode,
-          totalAmout: total[0].total,
+          totalAmout: total,
         },
         userId: ObjectID(order.userId),
         paymentMethod: order.payment_method,
@@ -33,7 +33,6 @@ module.exports = {
         status: status,
         date: new Date(),
       };
-      console.log("order object = > ", orderObj);
       db.get()
         .collection(collection.ORDER)
         .insertOne(orderObj)
@@ -41,7 +40,6 @@ module.exports = {
           db.get()
             .collection(collection.CART)
             .deleteOne({ user: ObjectID(order.userId) });
-            console.log('/*-/*-**/*-/*/*-*/-*/*',response)
             resolve(response.insertedId);
         });
     });
@@ -53,14 +51,12 @@ module.exports = {
         .get()
         .collection(collection.CART)
         .findOne({ user: ObjectID(userId) });
-      console.log(cart);
       resolve(cart.products);
     });
   },
 
   generateRazorpay: (orderId,total) => {
     return new Promise((resolve, reject) => {
-      console.log(total);
       total = parseInt(total)
       var options = {
         amount: total*100,
@@ -89,7 +85,7 @@ module.exports = {
       let {
         createHmac,
       } = require('node:crypto');
-    let hmac = createHmac('sha256','Q24tTFMKWdtqDpT5xzHxjbeH');   
+    let hmac = createHmac('sha256',process.env.RAZORPAY_KEY_SECRET);   
 
     hmac.update(details.payment.razorpay_order_id + '|' + details.payment.razorpay_payment_id);   
     hmac = hmac.digest('hex')

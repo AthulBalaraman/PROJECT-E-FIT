@@ -10,6 +10,7 @@ const wishListController  = require('../Controllers/userWishListController')
 const placeOrderController = require('../Controllers/userPlaceOrder')
 const userProfileController = require('../Controllers/userProfileController')
 const couponController = require('../Controllers/userCouponController')
+const { render } = require('ejs')
 
 router.get('/',userBasics.showLandingPage)
 
@@ -35,7 +36,7 @@ router.post('/changeProductQuantity',cartController.changeProductQuantity)
 router.delete('/removeCartProduct',userSessionCheck.userSessionChecker,cartController.removeCartProduct)
 router.post('/userCartShowPage/applyCoupon',userSessionCheck.userSessionChecker,couponController.applyCoupon)
 
-router.post('/userCartShowPage/proceedToCheckingOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showCheckingOutPage)
+router.get('/userCartShowPage/proceedToCheckOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showProceedToCheckOutPage)
 router.get('/proceedToCheckOut',userSessionCheck.userSessionChecker,proceedToCheckOut.showCheckOutPage)
 
 router.post('/placeOrder',userSessionCheck.userSessionChecker,placeOrderController.placeOrder)
@@ -63,3 +64,5 @@ router.get('/changePassword',userSessionCheck.userSessionChecker,userProfileCont
 router.post('/updatePassword',userSessionCheck.userSessionChecker,userProfileController.updatePassword)
 
 module.exports = router
+
+

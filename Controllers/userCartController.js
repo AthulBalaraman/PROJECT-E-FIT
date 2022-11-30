@@ -36,9 +36,7 @@ const showCartPage = async (req,res)=>{
 const addToCart = (req,res)=>{
 
   let productid = req.body.productId
-  console.log(productid)
   cartModel.addToCart(productid,req.session.user._id).then(()=>{
-    // res.redirect('/viewProductDetails')
     res.json({status:true})
   })
 }
@@ -54,8 +52,6 @@ const changeProductQuantity = (req,res,next)=>{
 }
 
 const removeCartProduct = (req,res)=>{
-  
-  console.log('remove cart ==========>>>>>>>>>>>>>>      ',req.body);
  cartModel.removeCartProduct(req.body).then((response)=>{
   res.json(response)
  })

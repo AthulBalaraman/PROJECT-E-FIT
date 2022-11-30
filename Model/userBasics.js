@@ -6,7 +6,6 @@ module.exports = {
   insertUserCredentials: (verified, username, useremail, userpassword,state) => {
     return new Promise(async (resolve, reject) => {
       userpassword = await bcrypt.hash(userpassword, 10);
-      console.log(userpassword);
       db.get()
         .collection(collection.USER_CREDENTIALS)
         .insertOne({ verified, username, useremail, userpassword,state})

@@ -41,7 +41,6 @@ const showUserProfile = async(req,res)=>{
   category.displayCategory().then(async(category) => {
     let userData = req.session.user;
     let userDetails = await userProfileModel.findUser(userData._id)
-    console.log('this is display user',userDetails)
       res.render("user/userProfilePage", {
         admin:false,
         user:true,
@@ -171,9 +170,7 @@ const viewOrderProducts = async(req,res)=>{
     let userDetails = await userProfileModel.findUser(userData._id)
     let orderId = req.query.id
     let products = await userProfileModel.getOrderProductDetails(orderId)
-    let orderProducts = products?products:''
-    
-    console.log('this is products of order ====>>>>>>>',products);
+    // let orderProducts = products?products:''
 
     res.render("user/userViewOrderProducts", {
       admin:false,
@@ -185,10 +182,6 @@ const viewOrderProducts = async(req,res)=>{
       userDetails,
       products
     });
-    // let oneProduct = await userProfileModel.getOneProduct(orderId)
-    // console.log('this is one products ',oneProduct);
-
-
     })
 }
 module.exports ={
