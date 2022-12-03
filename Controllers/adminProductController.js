@@ -5,7 +5,7 @@ const brand = require("../Model/adminBrand");
 const adminProductsPage = (req, res) => {
 
     adminProduct.displayProducts().then((ProductDetails) => {
-      res.render("admin/adminProductspage", {
+      res.render("admin/adminProducts", {
         admin: true,
         title: "PRODUCT CONTROL PAGE",
         ProductDetails,
