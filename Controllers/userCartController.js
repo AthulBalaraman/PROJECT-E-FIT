@@ -22,7 +22,6 @@ const showCartPage = async (req,res)=>{
   }
   
   category.displayCategory().then((category)=>{
-    
     let userData = req.session.user
     if(products.length<0)
     {
@@ -34,7 +33,6 @@ const showCartPage = async (req,res)=>{
   
 }
 const addToCart = (req,res)=>{
-
   let productid = req.body.productId
   cartModel.addToCart(productid,req.session.user._id).then(()=>{
     res.json({status:true})
@@ -45,7 +43,6 @@ const changeProductQuantity = (req,res,next)=>{
 
   cartModel.changeProductQuantity(req.body).then(async(response)=>{
     total = await checkOut.getTotalAmount(req.session.user._id)
-    
     response.total = total
      res.json(response)
   })

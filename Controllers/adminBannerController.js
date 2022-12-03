@@ -21,7 +21,6 @@ const addBanner = (req, res) => {
 
 const deleteBanner = (req, res) => {
   let id = req.body.bannerId;
-  console.log("bannererrrrrr", id);
   bannerModel.deleteBanner(id).then((response) => {
     res.json(response);
   });

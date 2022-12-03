@@ -10,11 +10,6 @@ module.exports = {
         .collection(collection.CATEGORIES)
         .findOne({ _id: ObjectId(categoryId) });
       let CATEGORYNAME = await category.newCategoryName;
-      // let product = db
-      //   .get()
-      //   .collection(collection.PRODUCTS)
-      //   .find({ categoryName: CATEGORYNAME })
-      //   .toArray();
         let product = await db.get().collection(collection.PRODUCTS).aggregate([
           {$match:{categoryName: CATEGORYNAME}}
         ]).toArray()

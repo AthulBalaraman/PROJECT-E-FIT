@@ -13,7 +13,6 @@ const showCheckOutPage = async (req, res) => {
     cartCount = await cartModel.getCartCount(req.session.user._id);
     wishListCount = await wishListModel.getWishListCount(req.session.user._id)
   }
-  // let total = await checkOut.getTotalAmount(req.session.user._id)
   let finalTotal = Math.round(req.query.finalTotal)
   category.displayCategory().then((category) => {
     let userData = req.session.user;

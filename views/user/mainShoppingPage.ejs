@@ -1,7 +1,7 @@
   
             <!-- Shop Product Start -->
           
-            <div class="col-lg-9 col-md-12">
+            <div class="col-lg-12 col-md-12">
               <div class="row pb-3 mb-5"  >
                   <% for(var i=0;i<product.length;i++) { %>
                   <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -17,7 +17,7 @@
                           </div>
                           <div class="card-footer d-flex justify-content-between bg-light border">
                               <a href="viewProductDetails?id=<%= product[i]._id %>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                            
+                              <button onclick="addToCart('<%= product[i]._id %>')" class="btn btn-sm px-3 ms-3"><i class="fas fa-shopping-cart mr-1"></i> Add To Cart</button>
                           </div>
                       </div>
                   </div>

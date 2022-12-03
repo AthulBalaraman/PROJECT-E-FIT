@@ -60,14 +60,12 @@ const addProductDetails = (req, res) => {
   }
 
 const deleteProduct = (req, res) => {
-
     let productId = req.query.id;
     adminProduct.deleteProduct(productId).then((response) => {
       res.redirect("/admin/adminProductsPage");
     });
   } 
 const updateProductDetails = async (req, res) => {
-
     let productid = req.query.id;
     let product = await adminProduct.getProductDetails(productid);
     categories.displayCategory().then((categoriesDetails) => {
@@ -84,7 +82,6 @@ const updateProductDetails = async (req, res) => {
   } 
 
 const updateProductDetailsAction = (req, res) => {
-  console.log("hkhjk",req.file);
     let id = req.body.id;
     let newProductData = req.body;
     let newImageId = req.file.path;

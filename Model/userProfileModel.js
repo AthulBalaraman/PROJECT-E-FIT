@@ -122,12 +122,9 @@ module.exports = {
                       }
                   }
               ]).toArray()
-              console.log("length",oneProduct.length);
               resolve(oneProduct)
-              
-              
-          })
-      }
+            })
+           }
         }
        
   

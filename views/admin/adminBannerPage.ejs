@@ -38,7 +38,7 @@ aria-hidden="true"
       <label for="newBannerName" class="text-primary">Banner Name : </label>
       <input type="text" name="bannerName" id="bannerName"><br><br>
       <label for="newBannerImage" class="text-primary">ADD BANNER IMAGE</label>
-      <input type="file" name="bannerImage" id="bannerImage"><br>
+      <input type="file" name="bannerImage" id="bannerImage" required><br>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -90,7 +90,7 @@ aria-hidden="true"
     
   swal({
   title: "DELETE",
-  text: "DO YOU WANT TO DELETE THIS BANNER",
+  text: "Do you want to delete this banner",
   icon: "warning",
   buttons: ["CANCEL","OK"],
 }).then(val=>{
@@ -107,7 +107,7 @@ aria-hidden="true"
     }).then(
       swal({
         title: "SUCCESS",
-       text: "BANNER SUCCESSFULLY DELETED",
+       text: "Banner successfully deleted",
        icon: "success",
        button:"OK"
        

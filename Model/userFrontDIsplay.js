@@ -25,12 +25,5 @@ module.exports = {
     });
   },
 
-  // getUserDetails:(userid)=>{
-  //   return new Promise((resolve,reject)=>{
-  //     console.log("Id"+userid);
-  //       db.get().collection('userdatacollection').findOne({_id:ObjectID(userid)}).then((user)=>{
-  //         resolve(user)
-  //       })
-  //   })
-  // },
+
 };

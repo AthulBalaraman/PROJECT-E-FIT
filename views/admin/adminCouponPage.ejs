@@ -107,7 +107,7 @@ aria-hidden="true"
   function deleteCoupon(couponId){
   swal({
   title: "DELETE",
-  text: "DO YOU WANT TO DELETE THIS COUPON",
+  text: "Do you want to delete this coupon",
   icon: "warning",
   buttons: ["CANCEL","OK"],
 }).then(val=>{
@@ -121,7 +121,7 @@ aria-hidden="true"
     }).then(res=>res.json).then(
       swal({
         title: "SUCCESS",
-       text: "COUPON SUCCESSFULLY DELETED",
+       text: "Coupon successfully deleted",
        icon: "success",
        button:"OK"
        

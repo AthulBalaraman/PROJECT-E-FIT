@@ -13,10 +13,7 @@ const showOrderPage = (req, res) => {
 
 const viewOrderProducts = async (req, res) => {
   let orderId = req.query.id
-  console.log('sdfafsd',orderId);
   let products = await userProfileModel.getOrderProductDetails(orderId)
-  
-
   res.render("admin/adminViewOrderProductsPage",{admin:true,title:"VIEW ORDER PRODUCTS",products,orderId})
 
 

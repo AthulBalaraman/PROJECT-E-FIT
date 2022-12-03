@@ -104,7 +104,6 @@ const checkOtp = async(req, res) => {
   if (OTP == req.body.otpSend) {
     req.session.loggedIn = true //added this
     userCredentials.updateverified(userID).then((response) => {
-      console.log("success");
       userFrontDisplay.displayProducts().then(async(productDetails) => {
         categoryDisplay.displayCategory().then(async(category) => {
           bannerDisplay.showBanner().then(async(banner) => {
@@ -129,7 +128,7 @@ const checkOtp = async(req, res) => {
       });
     });
   } else {
-    console.log("not successsssss");
+    res.render("user/otpVerificationPage", { admin: false,user:false, });
   }
 };
 

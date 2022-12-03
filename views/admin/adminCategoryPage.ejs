@@ -91,10 +91,9 @@ aria-hidden="true"
 });
 
 function deleteCategory(categoryId){
-  alert('sfd')
   swal({
   title: "DELETE",
-  text: "DO YOU WANT TO DELETE THIS CATEGORY",
+  text: "Do you want to delete this category",
   icon: "warning",
   buttons: ["CANCEL","OK"],
 }).then(val=>{
@@ -109,7 +108,7 @@ function deleteCategory(categoryId){
       if(data.status){
         swal({
         title: "SUCCESS",
-       text: "CATEGORY SUCCESSFULLY DELETED",
+       text: "Category successfully deleted",
        icon: "success",
        button:"OK"
        
@@ -121,7 +120,7 @@ function deleteCategory(categoryId){
       else{
         swal({
         title: "WARNING",
-       text: " CATEGORY ALREADY IN USE ",
+       text: " Category already in use ",
        icon: "warning",
        button:"OK"
        
@@ -133,6 +132,7 @@ function deleteCategory(categoryId){
   }
 })
 }
+</script>
 
 
 

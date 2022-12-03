@@ -17,17 +17,14 @@ module.exports = {
           .compare(admindata.adminpassword, admin.Password)
           .then((status) => {
             if (status) {
-              console.log("login success");
               response.user = admin;
               response.status = true;
               resolve(response);
             } else {
-              console.log("password wrong");
               resolve({ status: false });
             }
           });
       } else {
-        console.log("user not found");
         resolve({ status: false });
       }
     });

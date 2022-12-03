@@ -33,9 +33,7 @@ const viewShop = async (req, res) => { // this is category shop controller
   });
 };
 
-const shopDisplay = async(req,res)=>{ // this is main shop controller
-
-  let categoryId = req.query.id;
+const shopDisplay = async(req,res)=>{ 
   let product = await shopModel.viewShopProducts()
   let cartCount = null 
   let wishListCount = null
@@ -47,7 +45,6 @@ const shopDisplay = async(req,res)=>{ // this is main shop controller
   brand.displayBrand().then((brand) => {
     category.displayCategory().then((category) => {
       let userData = req.session.user
-      console.log('this is contorller products ================',product);
       res.render("user/mainShoppingPage", {
         admin: false,user:true,
         brand,

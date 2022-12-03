@@ -2,12 +2,10 @@ const adminLogin = require("../Model/adminLogin");
 
 
 const adminLoginPage = (req, res) => {
-
-    res.render("admin/adminHome", { admin: true, title: "ADMIN HOME PAGE" });
+   res.render("admin/adminHome", { admin: true, title: "ADMIN HOME PAGE" });
   } 
 
 const adminLoginAction = (req, res) => {
-  console.log(req.body);
   adminLogin.dologin(req.body).then((response) => {
     if (response.status) {
       req.session.admin = true;
@@ -19,7 +17,6 @@ const adminLoginAction = (req, res) => {
 };
 
 const adminHomePage = (req, res) => {
- 
     res.render("admin/adminHome", { admin: true, title: "ADMIN HOME PAGE" });
   } 
 

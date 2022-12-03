@@ -19,11 +19,9 @@ const deleteBrand = async (req, res) => {
   let brandId = req.query.id;
   await adminBrand.checkProducts(brandId).then((products) => {
     if (products.length > 0) {
-      console.log('reached if of brand');
       response.status=false;
       res.json(response);
      } else {
-      console.log("reached else");
       adminBrand.deleteBrand(brandId).then((response) => {
         response.status = true;
         console.log(response.status);

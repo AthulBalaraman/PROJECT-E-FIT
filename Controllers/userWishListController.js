@@ -30,8 +30,6 @@ const addToWishList = (req,res)=>{
 }
 
 const removeWishListProduct = (req,res)=>{
-  
-  console.log('remove wishlist ==========>>>>>>>>>>>>>>      ',req.body);
  wishListModel.removeWishListProduct(req.body).then((response)=>{
   res.json(response)
  })
