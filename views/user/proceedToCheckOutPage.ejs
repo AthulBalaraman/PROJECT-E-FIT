@@ -392,7 +392,6 @@
                 method:'post',
                 data:$('#placeOrderForm').serialize(),
                 success:(response)=>{
-                    alert(response)
                     if(response.codSuccess)
                     {
                         location.href ='/orderPlacedPage'
